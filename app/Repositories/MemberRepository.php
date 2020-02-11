@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class MemberRepository extends Common implements Base
 {
 
-    public function create()
+    public function index()
     {
         // TODO: Implement create() method.
     }

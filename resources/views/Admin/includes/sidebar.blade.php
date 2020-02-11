@@ -4,11 +4,11 @@
         Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
     -->
     <div class="logo">
-        <a href="{{ url('/ig_admin') }}" class="simple-text logo-mini">
+        <a href="{{ url('/home') }}" class="simple-text logo-mini">
             <i class="ti-pulse"></i>
         </a>
 
-        <a href="{{ url('/ig_admin') }}" class="simple-text logo-normal">
+        <a href="{{ url('/home') }}" class="simple-text logo-normal">
             @if(!empty(\Illuminate\Support\Facades\Auth::user()))
                 {{ \Illuminate\Support\Facades\Auth::user()->name }}
             @else
@@ -52,423 +52,154 @@
                 </div>
             </div>
         </div>
+
         <ul class="nav">
             <li>
-                <a data-toggle="collapse" href="#category">
-                    <i class="ti-info"></i>
-                    <p>About
+                <a data-toggle="collapse" href="#member">
+                    <i class="ti-user"></i>
+                    <p>Member
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="category">
+                <div class="collapse" id="member">
                     <ul class="nav">
                         <li>
-                            <a href="{{ url('/abouts/create') }}">
+                            <a href="{{ url('/members/create') }}">
                                 <span class="sidebar-mini"><i class="ti-plus"></i></span>
-                                <span class="sidebar-normal">Add New About Info</span>
+                                <span class="sidebar-normal">Add New Member</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('/abouts') }}">
+                            <a href="{{ url('/members') }}">
                                 <span class="sidebar-mini"><i class="ti-list"></i></span>
-                                <span class="sidebar-normal">About Info List</span>
+                                <span class="sidebar-normal">Member Info List</span>
                             </a>
                         </li>
 
                     </ul>
                 </div>
             </li>
+
             <li>
-                <a data-toggle="collapse" href="#apply">
-                    <i class="ti-envelope"></i>
-                    <p>Application
+                <a data-toggle="collapse" href="#constructors">
+                    <i class="ti-user"></i>
+                    <p>Constructor
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="apply">
-                    <ul class="nav">
-
-                        <li>
-                            <a href="{{ url('/applies') }}">
-                                <span class="sidebar-mini"><i class="ti-list"></i></span>
-                                <span class="sidebar-normal">Applicant List</span>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a data-toggle="collapse" href="#blog">
-                    <i class="ti-email"></i>
-                    <p>Blog
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="blog">
+                <div class="collapse" id="constructors">
                     <ul class="nav">
                         <li>
-                            <a href="{{ url('/blogs/create') }}">
+                            <a href="{{ url('/constructors/create') }}">
                                 <span class="sidebar-mini"><i class="ti-plus"></i></span>
-                                <span class="sidebar-normal">Add New Blog</span>
+                                <span class="sidebar-normal">Add New Constructor </span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('/blogs') }}">
+                            <a href="{{ url('/constructors') }}">
                                 <span class="sidebar-mini"><i class="ti-list"></i></span>
-                                <span class="sidebar-normal">Blog List</span>
+                                <span class="sidebar-normal">Constructors List</span>
                             </a>
                         </li>
 
                     </ul>
                 </div>
             </li>
+
             <li>
-                <a data-toggle="collapse" href="#contacts">
-                    <i class="ti-email"></i>
-                    <p>Contact
+                <a data-toggle="collapse" href="#areas">
+                    <i class="ti-world"></i>
+                    <p>Area
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="contacts">
+                <div class="collapse" id="areas">
                     <ul class="nav">
                         <li>
-                            <a href="{{ url('/contacts/create') }}">
+                            <a href="{{ url('/areas/create') }}">
                                 <span class="sidebar-mini"><i class="ti-plus"></i></span>
-                                <span class="sidebar-normal">Add New Contact Info</span>
+                                <span class="sidebar-normal">Add New Area </span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('/contacts') }}">
+                            <a href="{{ url('/areas') }}">
                                 <span class="sidebar-mini"><i class="ti-list"></i></span>
-                                <span class="sidebar-normal">Contact List</span>
+                                <span class="sidebar-normal">Area List</span>
                             </a>
                         </li>
 
                     </ul>
                 </div>
             </li>
+
             <li>
-                <a data-toggle="collapse" href="#country">
+                <a data-toggle="collapse" href="#tasks">
                     <i class="ti-cloud"></i>
-                    <p>Country
+                    <p>Tasks
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="country">
+                <div class="collapse" id="tasks">
                     <ul class="nav">
                         <li>
-                            <a href="{{ url('/countries/create') }}">
+                            <a href="{{ url('/tasks/create') }}">
                                 <span class="sidebar-mini"><i class="ti-plus"></i></span>
-                                <span class="sidebar-normal">Add New Country Info</span>
+                                <span class="sidebar-normal">Add New Tasks</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('/countries') }}">
+                            <a href="{{ url('/tasks') }}">
                                 <span class="sidebar-mini"><i class="ti-list"></i></span>
-                                <span class="sidebar-normal">Country List</span>
+                                <span class="sidebar-normal">Tasks List</span>
                             </a>
                         </li>
 
                     </ul>
                 </div>
             </li>
+
             <li>
-                <a data-toggle="collapse" href="#course">
+                <a data-toggle="collapse" href="#comments">
                     <i class="ti-agenda"></i>
-                    <p>Courses
+                    <p>Comments
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="course">
+                <div class="collapse" id="comments">
                     <ul class="nav">
                         <li>
-                            <a href="{{ url('/courses/create') }}">
-                                <span class="sidebar-mini"><i class="ti-plus"></i></span>
-                                <span class="sidebar-normal">Add New Course Info</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/courses') }}">
+                            <a href="{{ url('/comments') }}">
                                 <span class="sidebar-mini"><i class="ti-list"></i></span>
-                                <span class="sidebar-normal">Courses Lists</span>
+                                <span class="sidebar-normal">Comments Lists</span>
                             </a>
                         </li>
 
                     </ul>
                 </div>
             </li>
+
             <li>
-                <a data-toggle="collapse" href="#institutes">
+                <a data-toggle="collapse" href="#reports">
                     <i class="ti-agenda"></i>
-                    <p>Institute
+                    <p>Reports
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse" id="institutes">
+                <div class="collapse" id="reports">
                     <ul class="nav">
                         <li>
-                            <a href="{{ url('/institutes/create') }}">
-                                <span class="sidebar-mini"><i class="ti-plus"></i></span>
-                                <span class="sidebar-normal">Add New Institute Info</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/institutes') }}">
+                            <a href="{{ url('/reports') }}">
                                 <span class="sidebar-mini"><i class="ti-list"></i></span>
-                                <span class="sidebar-normal">Institute Lists</span>
+                                <span class="sidebar-normal">Report Lists</span>
                             </a>
                         </li>
 
                     </ul>
                 </div>
             </li>
-            <li>
-                <a data-toggle="collapse" href="#ownerinfos">
-                    <i class="ti-user"></i>
-                    <p>Owner Info
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="ownerinfos">
-                    <ul class="nav">
-                        <li>
-                            <a href="{{ url('/owners/create') }}">
-                                <span class="sidebar-mini"><i class="ti-plus"></i></span>
-                                <span class="sidebar-normal">Add New Owner Info</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/owners') }}">
-                                <span class="sidebar-mini"><i class="ti-list"></i></span>
-                                <span class="sidebar-normal">Owner Info Lists</span>
-                            </a>
-                        </li>
 
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a data-toggle="collapse" href="#procedures">
-                    <i class="ti-stack-overflow"></i>
-                    <p>Procedure
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="procedures">
-                    <ul class="nav">
-                        <li>
-                            <a href="{{ url('/procedures/create') }}">
-                                <span class="sidebar-mini"><i class="ti-plus"></i></span>
-                                <span class="sidebar-normal">Add New Procedure</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/procedures') }}">
-                                <span class="sidebar-mini"><i class="ti-list"></i></span>
-                                <span class="sidebar-normal">Procedure Info Lists</span>
-                            </a>
-                        </li>
 
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a data-toggle="collapse" href="#programs">
-                    <i class="ti-target"></i>
-                    <p>Programs
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="programs">
-                    <ul class="nav">
-                        <li>
-                            <a href="{{ url('/programs/create') }}">
-                                <span class="sidebar-mini"><i class="ti-plus"></i></span>
-                                <span class="sidebar-normal">Add New Program</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/programs') }}">
-                                <span class="sidebar-mini"><i class="ti-list"></i></span>
-                                <span class="sidebar-normal">Programs Info Lists</span>
-                            </a>
-                        </li>
 
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a data-toggle="collapse" href="#scholarships">
-                    <i class="ti-announcement"></i>
-                    <p>Scholarship
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="scholarships">
-                    <ul class="nav">
-                        <li>
-                            <a href="{{ url('/scholarships/create') }}">
-                                <span class="sidebar-mini"><i class="ti-plus"></i></span>
-                                <span class="sidebar-normal">Add New Scholarship</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/scholarships') }}">
-                                <span class="sidebar-mini"><i class="ti-list"></i></span>
-                                <span class="sidebar-normal">Scholarship Info Lists</span>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a data-toggle="collapse" href="#services">
-                    <i class="ti-server"></i>
-                    <p>Services
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="services">
-                    <ul class="nav">
-                        <li>
-                            <a href="{{ url('/services/create') }}">
-                                <span class="sidebar-mini"><i class="ti-plus"></i></span>
-                                <span class="sidebar-normal">Add New Service</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/services') }}">
-                                <span class="sidebar-mini"><i class="ti-list"></i></span>
-                                <span class="sidebar-normal">Service Info Lists</span>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a data-toggle="collapse" href="#sliders">
-                    <i class="ti-gallery"></i>
-                    <p>Slider
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="sliders">
-                    <ul class="nav">
-                        <li>
-                            <a href="{{ url('/sliders/create') }}">
-                                <span class="sidebar-mini"><i class="ti-plus"></i></span>
-                                <span class="sidebar-normal">Add New Slider</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/sliders') }}">
-                                <span class="sidebar-mini"><i class="ti-list"></i></span>
-                                <span class="sidebar-normal">Slider Info Lists</span>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a data-toggle="collapse" href="#dashboardOverview" aria-expanded="true">
-                    <i class="ti-facebook"></i>
-                    <p>Social Linker
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="dashboardOverview">
-                    <ul class="nav">
-                        <li class="">
-                            <a href="{{ url('/linkers/create') }}">
-                                <span class="sidebar-mini"><i class="ti-plus"></i></span>
-                                <span class="sidebar-normal">Add New Linker</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/linkers') }}">
-                                <span class="sidebar-mini"><i class="ti-list"></i></span>
-                                <span class="sidebar-normal">Linker List</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a data-toggle="collapse" href="#successstories">
-                    <i class="ti-mobile"></i>
-                    <p>Success Story
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="successstories">
-                    <ul class="nav">
-                        <li>
-                            <a href="{{ url('/stories/create') }}">
-                                <span class="sidebar-mini"><i class="ti-plus"></i></span>
-                                <span class="sidebar-normal">Add New Story Info</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/stories') }}">
-                                <span class="sidebar-mini"><i class="ti-list"></i></span>
-                                <span class="sidebar-normal">Story  List</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a data-toggle="collapse" href="#testimonials">
-                    <i class="ti-user"></i>
-                    <p>Testimonial
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="testimonials">
-                    <ul class="nav">
-                        <li>
-                            <a href="{{ url('/testimonials/create') }}">
-                                <span class="sidebar-mini"><i class="ti-plus"></i></span>
-                                <span class="sidebar-normal">Add New Testimonial</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/testimonials') }}">
-                                <span class="sidebar-mini"><i class="ti-list"></i></span>
-                                <span class="sidebar-normal">Testimonial Info List</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a data-toggle="collapse" href="#universities">
-                    <i class="ti-crown"></i>
-                    <p>University
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse" id="universities">
-                    <ul class="nav">
-                        <li>
-                            <a href="{{ url('/universities/create') }}">
-                                <span class="sidebar-mini"><i class="ti-plus"></i></span>
-                                <span class="sidebar-normal">Add New University</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('/universities') }}">
-                                <span class="sidebar-mini"><i class="ti-list"></i></span>
-                                <span class="sidebar-normal">University Info List</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
         </ul>
     </div>
 </div>

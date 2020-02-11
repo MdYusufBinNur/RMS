@@ -9,6 +9,7 @@ use Intervention\Image\Facades\Image;
 
 class Common
 {
+
     public function save_file($image, String $directory)
     {
         $path = 'image/'.$directory;
@@ -45,9 +46,15 @@ class Common
         }
     }
 
-    public function send_notification($message, $alert_type){
+    public function send_notification($alert_type){
+        if ($alert_type == 'success'){
+            return back()->with(array(
+                'message' => "Successfully Stored",
+                'alert-type' => $alert_type
+            ));
+        }
         return back()->with(array(
-            'message' => $message,
+            'message' => "Failed To Store Data",
             'alert-type' => $alert_type
         ));
     }

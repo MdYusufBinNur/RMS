@@ -4,18 +4,26 @@ namespace App\Http\Controllers\Admin;
 
 use App\Admin\Comment;
 use App\Http\Controllers\Controller;
+use App\Repositories\CommentRepository;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+    public $commentRepository;
+    public function __construct(CommentRepository $commentRepository)
+    {
+        $this->commentRepository = $commentRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        //
+        $comments = $this->commentRepository->index();
+        return view('Admin.Comment.comment_list', compact('comments'));
     }
 
     /**
@@ -32,22 +40,23 @@ class CommentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $result = $this->commentRepository->store($request);
+        return $this->commentRepository->send_notification($result);
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Admin\Comment  $comment
-     * @return \Illuminate\Http\Response
+     * @return Comment
      */
     public function show(Comment $comment)
     {
-        //
+        return $comment;
     }
 
     /**
@@ -81,6 +90,6 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+        $this->commentRepository->destroy($comment);
     }
 }

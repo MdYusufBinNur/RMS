@@ -4,6 +4,7 @@
 namespace App\Repositories;
 
 
+use App\Admin\Area;
 use App\Helper\Base;
 use App\Helper\Common;
 use Illuminate\Database\Eloquent\Model;
@@ -12,9 +13,10 @@ use Illuminate\Http\Request;
 class AreaRepository extends Common implements Base
 {
 
-    public function create()
+    public function index()
     {
         // TODO: Implement create() method.
+        return Area::all();
     }
 
     public function store(Request $request)

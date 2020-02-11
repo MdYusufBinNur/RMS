@@ -4,50 +4,58 @@ namespace App\Http\Controllers\Admin;
 
 use App\Admin\Task;
 use App\Http\Controllers\Controller;
+use App\Repositories\TaskRepository;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+    public $taskRepository;
+    public function __construct(TaskRepository $taskRepository)
+    {
+        $this->taskRepository = $taskRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        //
+        $tasks = $this->taskRepository->index();
+        return  view('Admin.Task.task_list', compact('tasks'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        //
+        return  view('Admin.Task.task');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        return $this->taskRepository->send_notification($this->taskRepository->store($request));
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Admin\Task  $task
-     * @return \Illuminate\Http\Response
+     * @return Task
      */
     public function show(Task $task)
     {
-        //
+        return $task;
     }
 
     /**
@@ -81,6 +89,6 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $this->taskRepository->destroy($task);
     }
 }

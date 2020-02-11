@@ -1,5 +1,4 @@
 $().ready(function() {
-
     $('#datatables').DataTable({
         "pagingType": "full_numbers",
         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
@@ -10,7 +9,6 @@ $().ready(function() {
             class: 'navbar-form navbar-left navbar-search-form'
         }
     });
-
       let table = $('#datatables').DataTable();
                 // Edit record
                 table.on( 'click', '.edit', function (e) {
@@ -35,7 +33,6 @@ $().ready(function() {
                 });
 
                 // Delete a record
-
                 table.on( 'click', '.remove', function (e) {
                     //alert('HH')
                     let id = $(this).data('id');
@@ -59,7 +56,7 @@ $().ready(function() {
                                     method: 'DELETE',
                                     data: {"_token": $('meta[name="csrf-token"]').attr('content')},
                                     success: function (data) {
-                                        console.log(data);
+
                                         swal("success", "Data Updated", "success");
                                         window.location.href = url+'s'
                                     },
@@ -75,7 +72,6 @@ $().ready(function() {
 
                     e.preventDefault();
                 } );
-
 
 });
 
@@ -175,7 +171,6 @@ function loadAbout(response) {
 }
 
 function loadCountry(response) {
-
     console.log(response)
     $('#country_id').val(response.id);
     $('#country_name').val(response.country_name);
@@ -194,8 +189,6 @@ function loadUniversity(response) {
 }
 
 function loadPrograms(response) {
-
-
     $('#program_id').val(response.id);
     $('#old_university_name').val(response.university['university_name']);
     $('#program_name').val(response.program_name);
@@ -203,7 +196,6 @@ function loadPrograms(response) {
 }
 
 function loadCourse(response) {
-
     $('#course_id').val(response.id);
     $('#old_program_name').val(response.program['program_name']);
     $('#course_name').val(response.course_name);
@@ -211,8 +203,6 @@ function loadCourse(response) {
 }
 
 function loadOwnerInfo(response) {
-
-
     $('#owner_id').val(response.id);
     $('#owner_name').val(response.owner_name);
     $('#owner_message').val(response.owner_message);

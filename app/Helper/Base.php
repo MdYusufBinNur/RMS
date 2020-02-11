@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 interface Base
 {
-    public function create();
+    public function index();
     public function store(Request $request);
     public function show(Model $model);
     public function destroy(Model $model);

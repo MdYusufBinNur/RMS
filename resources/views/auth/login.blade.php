@@ -61,7 +61,7 @@
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="card" data-background="color" data-color="blue">
-                                <div class="card-header">
+                                <div class="card-header text-center">
                                     <h3 class="card-title">Login</h3>
                                 </div>
                                 <div class="card-content">
@@ -104,11 +104,11 @@
         </div>
 
         <footer class="footer footer-transparent">
-            <div class="container">
+            {{--<div class="container">
                 <div class="copyright">
                     © <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="https://octoriz.com/" target="_blank">OCTORIZ</a>
                 </div>
-            </div>
+            </div>--}}
         </footer>
         <div class="full-page-background" style="background-image: {{ asset('Admin/paper_dashboard/assets/img/background/background-2.jpg') }} "></div></div>
 </div>
