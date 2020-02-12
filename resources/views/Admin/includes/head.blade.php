@@ -41,4 +41,7 @@
     {{--<!-- Styles -->--}}
     {{--<link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
 
+    {{--Taoster--}}
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+
 </head>

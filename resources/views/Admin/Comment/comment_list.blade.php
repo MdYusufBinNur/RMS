@@ -31,23 +31,30 @@
                                     </thead>
 
                                     <tbody>
-                                    @if(!empty($areas))
-                                        @foreach($areas as $area)
+                                    @if(!empty($comments))
+                                        @foreach($comments as $comment)
                                             <tr>
-                                                <td class="text-center">{!! $area->area_name !!}</td>
-                                                <td class="text-center">{!! $area->area_ward !!}</td>
-                                                <td class="text-center">{!! $area->area_thana !!}</td>
-                                                <td class="text-center">{!! $area->area_city !!}</td>
+                                                <td class="text-center">{!! $comment->member->user_id !!}</td>
+                                                <td class="text-center">{!! $comment->constructro->user_id !!}</td>
+                                                <td class="text-center">{!! $comment->message !!}</td>
 
                                                 <td class="text-center">
-                                                    <a href="#" class="btn btn-simple btn-warning btn-icon edit" data-toggle="modal" data-body="{{ "area" }}" data-id="{{ $area->id }}" data-target="#Modal"><i class="ti-pencil-alt"></i></a>
-                                                    <a href="" class="btn btn-simple btn-info btn-icon del_brand remove" data-id="{{ $area->id }}" data-body="{{ "area" }}"  ><i class="ti-trash"></i></a>
+                                                    <a href="#" class="btn btn-simple btn-warning btn-icon edit" data-toggle="modal" data-body="{{ "comment" }}" data-id="{{ $comment->id }}" data-target="#Modal"><i class="ti-pencil-alt"></i></a>
                                                 </td>
                                             </tr>
 
                                         @endforeach
                                     @endif
+                                    <tr>
+                                        <td class="text-center"> Name</td>
+                                        <td class="text-center"> Ward</td>
+                                        <td class="text-center"> Thana</td>
+                                        <td class="text-center"> City</td>
+                                        <td class="text-center disabled-sorting">
+                                            <a href="#" class="btn btn-simple btn-warning btn-icon " data-toggle="modal"  data-target="#Modal"><i class="ti-pencil-alt"></i></a>
 
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -66,42 +73,42 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Message View</h4>
+                    <h4 class="modal-title">Report View</h4>
                 </div>
-                <form action="{{ url('contacts') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ url('comments') }}" method="post" enctype="multipart/form-data">
                     @csrf()
                     <div class="modal-body">
                         <div class="row" style="padding: 10px">
 
-                            <input type="hidden" id="contact_id"  name="area_id">
+                            <input type="hidden" id="comment_id"  name="comment_id">
 
                             <div class="form-group">
-                                <label class="control-label" for="area_name">
-                                    Name
-                                </label>
-                                <input class="form-control" type="text" name="area_name" id="area_name" required/>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5 class="text-left"> <strong>USER</strong> </h5>
+                                        <p id="user_name"> USER </p>
+                                        <p id="user_email"> arya@octoriz.com</p>
+                                        <p id="user_phone">01815625375 </p>
+
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <h5 class=""> <strong>CONSTRUCTOR</strong> </h5>
+                                        <p id="constructor_name"> CONSTRUCTOR </p>
+                                        <p id="constructor_email"> constructor@octoriz.com</p>
+                                        <p id="constructor_phone">01815625375 </p>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label class="control-label" for="area_ward"> Ward No<star>*</star></label>
-                                <input class="form-control" type="number" name="area_ward" id="area_ward"  required/>
 
-                            </div>
                             <div class="form-group">
-                                <label class="control-label" for="area_thana">Thana<star>*</star></label>
-                                <input class="form-control" name="area_thana" id="area_thana"  required/>
+                                <p id="message"  class="text-justify">We are committed to provide the excellent services to our clients and our business partners. We take pride of our services and are determined to continuously enhance our reputation and relationships with wider stakeholders.</p>
+                            </div>
 
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="area_city"> City <star>*</star></label>
-                                <input type="text" class="form-control" name="area_city" id="area_city" required />
-                            </div>
+
                         </div>
                     </div>
 
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-default"  >Update</button>
-                    </div>
                 </form>
             </div>
 

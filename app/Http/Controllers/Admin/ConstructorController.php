@@ -23,7 +23,7 @@ class ConstructorController extends Controller
     public function index()
     {
         $constructors = $this->constructorRepository->index();
-        return view('Admin.Constructor.constructor_lis', compact('constructors'));
+        return view('Admin.Constructor.constructor_list', compact('constructors'));
     }
 
     /**
