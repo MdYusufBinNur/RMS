@@ -25,13 +25,25 @@
                                     <label for="">Select Constructor<star>*</star></label>
                                     <select  title="-" class="selectpicker"  data-style="btn-dark btn-block" data-size="4" name="constructor_id" id="constructor_id" required >
 
+                                    @if(!empty($constructors))
+                                    @foreach($constructors as $constructor)
+                                          <option value="{{ $constructor->id }}">{{ $constructor->user->name }}</option>
+                                    @endforeach
+
+                                    @endif
+
                                     </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="">Select Area<star>*</star></label>
                                     <select  title="-" class="selectpicker"  data-style="btn-dark btn-block" data-size="4" name="area_id" id="area_id" required >
+                                        @if(!empty($areas))
+                                            @foreach($areas as $area)
+                                                <option value="{{ $area->id }}">{{ $area->area_name }}</option>
+                                            @endforeach
 
+                                        @endif
                                     </select>
                                 </div>
 

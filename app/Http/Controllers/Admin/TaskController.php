@@ -23,7 +23,9 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = $this->taskRepository->index();
-        return  view('Admin.Task.task_list', compact('tasks'));
+        $areas = $tasks['areas'];
+        $constructors = $tasks['constructors'];
+        return  view('Admin.Task.task_list', compact('tasks', 'constructors', 'areas'));
     }
 
     /**
@@ -33,7 +35,10 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return  view('Admin.Task.task');
+        $tasks = $this->taskRepository->index();
+        $areas = $tasks['areas'];
+        $constructors = $tasks['constructors'];
+        return  view('Admin.Task.task', compact('areas','constructors'));
     }
 
     /**

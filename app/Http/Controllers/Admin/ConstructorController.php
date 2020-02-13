@@ -44,9 +44,7 @@ class ConstructorController extends Controller
      */
     public function store(Request $request)
     {
-        //return $request;
-
-
+        //return $this->constructorRepository->store($request);
         return $this->constructorRepository->send_notification($this->constructorRepository->store($request));
     }
 
@@ -54,11 +52,11 @@ class ConstructorController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Admin\Constructor  $constructor
-     * @return Constructor
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object
      */
     public function show(Constructor $constructor)
     {
-        return $constructor;
+        return $this->constructorRepository->show($constructor);
     }
 
     /**

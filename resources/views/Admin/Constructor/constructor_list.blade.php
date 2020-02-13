@@ -72,7 +72,7 @@
 
                             <div class="form-group">
                                 <label for="">Select Role<star>*</star></label>
-                                <select  title="-" class="selectpicker"  data-style="btn-dark btn-block" data-size="4" name="role" id="role" required >
+                                <select  title="-" class="selectpicker"  data-style="btn-dark btn-block" data-size="4" name="role" id="role" >
                                     <option value="constructor">Constructor</option>
                                     <option value="user">User</option>
                                 </select>
@@ -111,7 +111,7 @@
 
                             <div class="form-group">
                                 <label class="control-label" for="photo"> Image </label>
-                                <input type="file" name="photo" class="form-control" required/>
+                                <input type="file" name="photo" class="form-control" />
                             </div>
 
                             <div class="form-group">
