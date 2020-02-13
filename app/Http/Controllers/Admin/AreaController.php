@@ -44,6 +44,7 @@ class AreaController extends Controller
      */
     public function store(Request $request)
     {
+        //return $request;
         $result = $this->areaRepository->store($request);
         return $this->areaRepository->send_notification( $result);
     }

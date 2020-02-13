@@ -28,6 +28,10 @@
                                     <input class="form-control" type="number" name="area_ward" id="area_ward"  required/>
                                 </div>
                                 <div class="form-group">
+                                    <label class="control-label" for="area_union"> Union<star>*</star></label>
+                                    <input class="form-control" type="number" name="area_union" id="area_union"  required/>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label" for="area_thana">Thana<star>*</star></label>
                                     <input class="form-control" name="area_thana" id="area_thana"  required/>
                                 </div>

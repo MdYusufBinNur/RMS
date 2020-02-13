@@ -44,6 +44,9 @@ class ConstructorController extends Controller
      */
     public function store(Request $request)
     {
+        //return $request;
+
+
         return $this->constructorRepository->send_notification($this->constructorRepository->store($request));
     }
 

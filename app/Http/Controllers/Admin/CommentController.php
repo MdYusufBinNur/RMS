@@ -44,6 +44,7 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
+
         $result = $this->commentRepository->store($request);
         return $this->commentRepository->send_notification($result);
     }

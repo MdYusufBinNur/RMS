@@ -17,6 +17,7 @@ class CreateAreasTable extends Migration
             $table->bigIncrements('id');
             $table->string('area_name');
             $table->string('area_ward');
+            $table->string('area_union');
             $table->string('area_thana');
             $table->string('area_city');
             $table->timestamps();

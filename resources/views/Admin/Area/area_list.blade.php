@@ -68,12 +68,12 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Message View</h4>
                 </div>
-                <form action="{{ url('contacts') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ url('areas') }}" method="post" enctype="multipart/form-data">
                     @csrf()
                     <div class="modal-body">
                         <div class="row" style="padding: 10px">
 
-                            <input type="hidden" id="contact_id"  name="area_id">
+                            <input type="hidden" id="area_id"  name="area_id">
 
                             <div class="form-group">
                                 <label class="control-label" for="area_name">
@@ -86,6 +86,10 @@
                                 <label class="control-label" for="area_ward"> Ward No<star>*</star></label>
                                 <input class="form-control" type="number" name="area_ward" id="area_ward"  required/>
 
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="area_union"> Union<star>*</star></label>
+                                <input class="form-control" type="number" name="area_union" id="area_union"  required/>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="area_thana">Thana<star>*</star></label>

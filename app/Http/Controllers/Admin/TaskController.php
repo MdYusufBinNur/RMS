@@ -44,6 +44,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        return $request;
         return $this->taskRepository->send_notification($this->taskRepository->store($request));
     }
 

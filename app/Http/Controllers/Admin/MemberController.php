@@ -44,6 +44,7 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
+        return $request;
         return $this->memberRepository->send_notification($this->memberRepository->store($request));
     }
 

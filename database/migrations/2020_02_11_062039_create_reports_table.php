@@ -18,6 +18,9 @@ class CreateReportsTable extends Migration
             $table->unsignedBigInteger('constructor_id');
             $table->unsignedBigInteger('area_id');
             $table->unsignedBigInteger('task_id');
+            $table->longText('report_details')->nullable();
+            $table->string('report_images')->nullable();
+
 
             $table->timestamps();
 
