@@ -40,7 +40,7 @@ class TaskRepository extends Common implements Base
                     $data['area_id'] = $isAvailable->area_id;
                 }
                 if (empty($request->constructor_id)) {
-                    $data['constructor_id'] = $isAvailable->constructor_id
+                    $data['constructor_id'] = $isAvailable->constructor_id;
                 }
                 if ($isAvailable->update($data)) {
                     return 'success';
