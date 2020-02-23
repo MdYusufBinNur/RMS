@@ -33,6 +33,7 @@ class ConstructorRepository extends Common implements Base
         }
 
         $image = "";
+
         $dir = "Constructor_Image";
         if (!empty($request->file('photo'))){
             $image =  $this->save_file($request->file('photo'), $dir);
@@ -88,8 +89,6 @@ class ConstructorRepository extends Common implements Base
             }else{
                 return 'error';
             }
-
-
         }
 
     }
@@ -103,6 +102,10 @@ class ConstructorRepository extends Common implements Base
     public function destroy(Model $model)
     {
         // TODO: Implement destroy() method.
+        $isAvailable = Constructor::find($model->id);
+        if (!empty($isAvailable)){
+            User::find($isAvailable->user_id)->delete();
+        }
         return Constructor::find($model->id)->delete();
     }
 

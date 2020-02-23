@@ -125,7 +125,15 @@ function loadArea(response) {
 
 function loadComment(response) {
 
-
+    $('#comment_id').val(response.id);
+    $('#user_name').text(response.member.user.name);
+    $('#user_email').text(response.member.user.email);
+    $('#user_phone').text(response.member.phone);
+    $('#constructor_name').text(response.constructor.user.name);
+    $('#constructor_email').text(response.constructor.user.email);
+    $('#constructor_phone').text(response.constructor.phone);
+    $('#message').text(response.comment);
+    $('#photo').attr('src',response.photos)
 }
 
 function loadConstructor(response) {
@@ -141,9 +149,9 @@ function loadConstructor(response) {
 
 function loadMember(response) {
     $('#constructor_id').val(response.id);
-    $('#old_role').val(response.user['role']);
-    $('#name').val(response.user['name']);
-    $('#email').val(response.user['email']);
+    $('#old_role').val(response.member.user.role);
+    $('#name').val(response.member.user.name);
+    $('#email').val(response.member.user.email);
     $('#phone').val(response.phone);
     $('#national_id').val(response.national_id);
     $('#address').val(response.address);
@@ -152,21 +160,21 @@ function loadMember(response) {
 
 function loadReport(response) {
 
-    $('#constructor_name').val(response.user['name']);
-    $('#constructor_email').val(response.user['email']);
-    $('#constructor_phone').val(response.phone);
-    $('#task_id').val(response.task['task_name']);
-    $('#task_area').val(response.area['area_name']);
-    $('#report').val(response.area['report_details']);
+    $('#constructor_name').text(response.constructor.user.name);
+    $('#constructor_email').text(response.constructor.user.email);
+    $('#constructor_phone').text(response.constructor.user.phone);
+    $('#task_id').text(response.task.task_name);
+    $('#task_area').text(response.area.area_name);
+    $('#report').text(response.report_details);
     $('#report_image').attr('src',response.report_images);
 }
 
 function loadTask(response) {
     $('#task_id').val(response.id);
-    $('#old_constructor').val(response.user['name']);
-    $('#old_area').val(response.area['area_name']);
+    $('#old_constructor').val(response.constructor.user.name);
+    $('#old_area').val(response.area.area_name);
     $('#task_name').val(response.task_name);
-    $('#task_details').val(response.task['task_details']);
+    $('#task_details').val(response.task_details);
     $('#task_budget').val(response.task_budget);
 }
 function modalHide() {

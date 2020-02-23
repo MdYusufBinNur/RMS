@@ -22,10 +22,10 @@
                                 <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                                     <thead>
                                     <tr>
-                                        <th class="text-center"> Name</th>
-                                        <th class="text-center"> Ward</th>
+                                        <th class="text-center"> User Name</th>
+                                        <th class="text-center"> Task Name</th>
                                         <th class="text-center"> Thana</th>
-                                        <th class="text-center"> City</th>
+                                        <th class="text-center"> Comments</th>
                                         <th class="text-center disabled-sorting">Actions</th>
                                     </tr>
                                     </thead>
@@ -34,8 +34,9 @@
                                     @if(!empty($comments))
                                         @foreach($comments as $comment)
                                             <tr>
-                                                <td class="text-center">{!! $comment->member->user_id !!}</td>
-                                                <td class="text-center">{!! $comment->constructro->user_id !!}</td>
+                                                <td class="text-center">{!! $comment->member->user->name !!}</td>
+                                                <td class="text-center">{!! $comment->task->task_name !!}</td>
+                                                <td class="text-center">{!! $comment->task->area->area_thana !!}</td>
                                                 <td class="text-center">{!! $comment->message !!}</td>
 
                                                 <td class="text-center">
@@ -45,16 +46,7 @@
 
                                         @endforeach
                                     @endif
-                                    <tr>
-                                        <td class="text-center"> Name</td>
-                                        <td class="text-center"> Ward</td>
-                                        <td class="text-center"> Thana</td>
-                                        <td class="text-center"> City</td>
-                                        <td class="text-center disabled-sorting">
-                                            <a href="#" class="btn btn-simple btn-warning btn-icon " data-toggle="modal"  data-target="#Modal"><i class="ti-pencil-alt"></i></a>
 
-                                        </td>
-                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -82,6 +74,9 @@
 
                             <input type="hidden" id="comment_id"  name="comment_id">
 
+                            <div class="form-group">
+                                <div class="row"></div>
+                            </div>
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-6">

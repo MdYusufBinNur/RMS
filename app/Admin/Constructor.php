@@ -18,4 +18,7 @@ class Constructor extends Model
     public function comment(){
         return $this->hasMany(Comment::class);
     }
+    public function task(){
+        return $this->hasMany(Task::class);
+    }
 }

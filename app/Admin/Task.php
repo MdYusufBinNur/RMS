@@ -15,4 +15,12 @@ class Task extends Model
     public function report(){
         return $this->hasMany(Report::class);
     }
+
+    public function constructor(){
+        return $this->belongsTo(Constructor::class);
+    }
+
+    public function area(){
+        return $this->belongsTo(Area::class);
+    }
 }

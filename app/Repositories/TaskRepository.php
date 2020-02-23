@@ -17,10 +17,11 @@ class TaskRepository extends Common implements Base
 
     public function index()
     {
+        $tasks = Task::orderBy('isFinished','ASC')->get();
         $constructors = Constructor::with('user')->where('available', '=', true)->orderByDesc('rating')->get();
         $areas = Area::all();
 
-        return compact('areas', 'constructors');
+        return compact('areas', 'constructors','tasks');
         // TODO: Implement create() method.
     }
 
@@ -60,7 +61,7 @@ class TaskRepository extends Common implements Base
 
     public function show(Model $model)
     {
-        // TODO: Implement show() method.
+        return Task::with('constructor', 'constructor.user','area')->where('id','=', $model->id)->first();
     }
 
     public function destroy(Model $model)

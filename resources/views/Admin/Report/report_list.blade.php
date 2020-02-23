@@ -34,19 +34,19 @@
                                     @if(!empty($reports))
                                         @foreach($reports as $report)
                                             <tr>
-                                                <td class="text-center">{!! $report->constructor->user_id !!}</td>
-                                                <td class="text-center">{!! $report->task_id !!}</td>
-                                                <td class="text-center">{!! $report->area_id !!}</td>
-                                                <td class="text-center">{!! $report->report !!}</td>
+                                                <td class="text-center">{!! $report->constructor->user->name !!}</td>
+                                                <td class="text-center">{!! $report->task->task_name !!}</td>
+                                                <td class="text-center">{!! $report->area->area_name  !!}</td>
+                                                <td class="text-center">{!! substr($report->report_details,0,100) !!}...</td>
 
                                                 <td class="text-center">
-                                                    <a href="#" class="btn btn-simple btn-warning btn-icon edit" data-toggle="modal" data-body="{{ "report" }}" data-id="{{ $report->id }}" data-target="#Modal"><i class="ti-pencil-alt"></i></a>
+                                                    <a href="#" class="btn btn-simple btn-info btn-icon edit" data-toggle="modal" data-body="{{ "report" }}" data-id="{{ $report->id }}" data-target="#Modal">view</a>
                                                 </td>
                                             </tr>
 
                                         @endforeach
                                     @endif
-                                    <tr>
+                                {{--    <tr>
                                         <th class="text-center"> Constructor</th>
                                         <th class="text-center"> Task ID</th>
                                         <th class="text-center"> Area</th>
@@ -55,7 +55,7 @@
                                             <a href="#" class="btn btn-simple btn-warning btn-icon " data-toggle="modal"  data-target="#Modal"><i class="ti-pencil-alt"></i></a>
 
                                         </td>
-                                    </tr>
+                                    </tr--}}>
                                     </tbody>
                                 </table>
                             </div>
@@ -87,22 +87,23 @@
                                 <div class="row">
                                     <div class="col-md-6 ">
                                         <h5 class=""> <strong>CONSTRUCTOR</strong> </h5>
-                                        <p id="constructor_name"> CONSTRUCTOR </p>
-                                        <p id="constructor_email"> constructor@octoriz.com</p>
-                                        <p id="constructor_phone">01815625375 </p>
+                                        <p id="constructor_name">  </p>
+                                        <p id="constructor_email"> </p>
+                                        <p id="constructor_phone"> </p>
                                     </div>
 
                                     <div class="col-md-6 text-right">
-                                        <h5 class="text-left"> <strong>Task</strong> </h5>
-                                        <p id="task_id"> USER </p>
-                                        <p id="task_area"> arya@octoriz.com</p>
+                                        <h5 class="text-right"> TASK<strong></strong> </h5>
+                                        <p id="task_id">  </p>
+                                        <p id="task_area"> </p>
                                     </div>
                                 </div>
                             </div>
 
 
                             <div class="form-group">
-                                <p id="report"  class="text-justify">We are committed to provide the excellent services to our clients and our business partners. We take pride of our services and are determined to continuously enhance our reputation and relationships with wider stakeholders.</p>
+                                <p id="report"  class="text-justify">
+                                  </p>
                             </div>
 
                             <div class="form-group">

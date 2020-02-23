@@ -23,6 +23,7 @@ class CommentController extends Controller
     public function index()
     {
         $comments = $this->commentRepository->index();
+//        return $comments;
         return view('Admin.Comment.comment_list', compact('comments'));
     }
 
@@ -40,24 +41,24 @@ class CommentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return array
      */
     public function store(Request $request)
     {
 
-        $result = $this->commentRepository->store($request);
-        return $this->commentRepository->send_notification($result);
+        return $this->commentRepository->store($request);
+        /*return $this->commentRepository->send_notification($result);*/
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Admin\Comment  $comment
-     * @return Comment
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object
      */
     public function show(Comment $comment)
     {
-        return $comment;
+        return $this->commentRepository->show($comment);
     }
 
     /**

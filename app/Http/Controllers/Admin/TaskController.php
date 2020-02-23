@@ -22,9 +22,11 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = $this->taskRepository->index();
-        $areas = $tasks['areas'];
-        $constructors = $tasks['constructors'];
+
+        $results = $this->taskRepository->index();
+        $tasks = $results['tasks'];
+        $areas = $results['areas'];
+        $constructors = $results['constructors'];
         return  view('Admin.Task.task_list', compact('tasks', 'constructors', 'areas'));
     }
 
@@ -49,7 +51,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+//        return $request;
         return $this->taskRepository->send_notification($this->taskRepository->store($request));
     }
 
@@ -57,11 +59,11 @@ class TaskController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Admin\Task  $task
-     * @return Task
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object
      */
     public function show(Task $task)
     {
-        return $task;
+        return $this->taskRepository->show($task);
     }
 
     /**

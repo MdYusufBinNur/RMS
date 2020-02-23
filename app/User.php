@@ -40,10 +40,10 @@ class User extends Authenticatable
     ];
 
     public function member(){
-        return $this->hasOne(Member::class);
+        return $this->hasMany(Member::class);
     }
 
     public function constructor(){
-        return $this->hasOne(Constructor::class);
+        return $this->hasMany(Constructor::class);
     }
 }

@@ -27,6 +27,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['auth']] , function () {
     Route::resource('members', 'MemberController');
     Route::resource('reports', 'ReportController');
     Route::resource('tasks', 'TaskController');
+    Route::resource('members', 'MemberController');
 /*    Route::resource('applies', 'ApplyController')->only(['index', 'show']);;*/
 
 });

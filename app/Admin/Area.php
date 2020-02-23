@@ -11,4 +11,8 @@ class Area extends Model
     public function report(){
         return $this->hasMany(Report::class);
     }
+
+    public function task(){
+        return $this->hasMany(Task::class);
+    }
 }

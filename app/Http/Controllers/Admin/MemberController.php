@@ -23,6 +23,7 @@ class MemberController extends Controller
     public function index()
     {
         $members = $this->memberRepository->index();
+
         return view('Admin.Member.member_list', compact('members'));
     }
 
@@ -40,12 +41,13 @@ class MemberController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return array
      */
     public function store(Request $request)
     {
-        return $request;
-        return $this->memberRepository->send_notification($this->memberRepository->store($request));
+
+        return $this->memberRepository->store($request);
+//        return $this->memberRepository->send_notification($this->memberRepository->store($request));
     }
 
     /**

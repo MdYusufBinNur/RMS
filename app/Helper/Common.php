@@ -27,7 +27,7 @@ class Common
 
             $image->move($directory,$imageName);
         }
-        else if ( $path_info == "png" || $path_info == 'jpeg' || $path_info == "jpg" ){
+        else if ( $path_info == "png" || $path_info == 'jpeg' || $path_info == "jpg" || $path_info == "PNG"  || $path_info == "JPEG" || $path_info == "JPG"){
             $imageUrl    = $directory.$imageName;
             Image::make($image)->save($imageUrl);
         }

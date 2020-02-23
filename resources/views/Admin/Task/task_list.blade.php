@@ -34,8 +34,8 @@
                                         @foreach($tasks as $task)
                                             <tr>
                                                 <td class="text-center">{!! $task->task_name !!}</td>
-                                                <td class="text-center">{!! $task->constructor_id !!}</td>
-                                                <td class="text-center">{!! $task->area_id !!}</td>
+                                                <td class="text-center">{!! $task->constructor->user->name !!}</td>
+                                                <td class="text-center">{!! $task->area->area_name !!}</td>
 
                                                 <td class="text-center">
                                                     <a href="#" class="btn btn-simple btn-warning btn-icon edit" data-toggle="modal" data-body="{{ "task" }}" data-id="{{ $task->id }}" data-target="#Modal"><i class="ti-pencil-alt"></i></a>
@@ -78,8 +78,17 @@
                                 <label for="">Select Constructor<star>*</star></label>
                                 <select  title="-" class="selectpicker"  data-style="btn-dark btn-block" data-size="4" name="constructor_id" id="constructor_id" required >
 
+                                    @if(!empty($constructors))
+                                        @foreach($constructors as $constructor)
+                                            <option value="{{ $constructor->id }}">{{ $constructor->user->name }}</option>
+                                        @endforeach
+
+                                    @endif
+
                                 </select>
                             </div>
+
+
                             <div class="form-group">
                                 <label for="old_constructor">Selected Area</label>
                                 <input class="form-control" type="text" id="old_area" readonly>
@@ -87,7 +96,12 @@
                             <div class="form-group">
                                 <label for="">Select Area<star>*</star></label>
                                 <select  title="-" class="selectpicker"  data-style="btn-dark btn-block" data-size="4" name="area_id" id="area_id" required >
+                                    @if(!empty($areas))
+                                        @foreach($areas as $area)
+                                            <option value="{{ $area->id }}">{{ $area->area_name }}</option>
+                                        @endforeach
 
+                                    @endif
                                 </select>
                             </div>
 
@@ -116,7 +130,9 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-default" >Update</button>
+                    </div>
                 </form>
             </div>
 

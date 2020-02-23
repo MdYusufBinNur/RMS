@@ -40,22 +40,23 @@ class ReportController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return void
      */
     public function store(Request $request)
     {
-        return $this->reportRepository->send_notification($this->reportRepository->store($request));
+        return $this->reportRepository->store($request);
+//        return $this->reportRepository->send_notification($this->reportRepository->store($request));
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Admin\Report  $report
-     * @return Report
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object
      */
     public function show(Report $report)
     {
-        return  $report;
+        return  $this->reportRepository->show($report);
     }
 
     /**
