@@ -63,12 +63,12 @@
                 </a>
                 <div class="collapse" id="member">
                     <ul class="nav">
-                        <li>
+                     {{--   <li>
                             <a href="{{ url('/members/create') }}">
                                 <span class="sidebar-mini"><i class="ti-plus"></i></span>
                                 <span class="sidebar-normal">Add New Member</span>
                             </a>
-                        </li>
+                        </li>--}}
                         <li>
                             <a href="{{ url('/members') }}">
                                 <span class="sidebar-mini"><i class="ti-list"></i></span>
@@ -83,7 +83,7 @@
             <li>
                 <a data-toggle="collapse" href="#constructors">
                     <i class="ti-user"></i>
-                    <p>Constructor
+                    <p>Contractor
                         <b class="caret"></b>
                     </p>
                 </a>
@@ -92,13 +92,13 @@
                         <li>
                             <a href="{{ url('/constructors/create') }}">
                                 <span class="sidebar-mini"><i class="ti-plus"></i></span>
-                                <span class="sidebar-normal">Add New Constructor </span>
+                                <span class="sidebar-normal">Add New Contractor </span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ url('/constructors') }}">
                                 <span class="sidebar-mini"><i class="ti-list"></i></span>
-                                <span class="sidebar-normal">Constructors List</span>
+                                <span class="sidebar-normal">Contractor List</span>
                             </a>
                         </li>
 
@@ -197,9 +197,6 @@
                     </ul>
                 </div>
             </li>
-
-
-
         </ul>
     </div>
 </div>

@@ -24,6 +24,7 @@ class MemberController extends Controller
     {
         $members = $this->memberRepository->index();
 
+        ///return $members;
         return view('Admin.Member.member_list', compact('members'));
     }
 

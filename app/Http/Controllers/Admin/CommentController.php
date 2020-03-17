@@ -23,7 +23,7 @@ class CommentController extends Controller
     public function index()
     {
         $comments = $this->commentRepository->index();
-//        return $comments;
+        //return $comments;
         return view('Admin.Comment.comment_list', compact('comments'));
     }
 
@@ -94,4 +94,6 @@ class CommentController extends Controller
     {
         $this->commentRepository->destroy($comment);
     }
+
+
 }

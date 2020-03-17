@@ -23,6 +23,7 @@
                                         <th class="text-center"> Name</th>
                                         <th class="text-center"> Email</th>
                                         <th class="text-center"> Phone</th>
+                                        <th class="text-center"> Rateing</th>
                                         <th class="text-center disabled-sorting">Actions</th>
                                     </tr>
                                     </thead>
@@ -33,6 +34,11 @@
                                                 <td class="text-center">{!! $constructor->user->name !!}</td>
                                                 <td class="text-center">{!! $constructor->user->email !!}</td>
                                                 <td class="text-center">{!! $constructor->phone !!}</td>
+                                                <td class="text-center">
+                                                    @for($i = 0; $i<floor($constructor->rating); $i++)
+                                                        <span class="fa fa-star" ></span>
+                                                    @endfor
+                                                </td>
                                                 <td class="text-center">
                                                     <a href="#" class="btn btn-simple btn-warning btn-icon edit" data-toggle="modal" data-body="{{ "constructor" }}" data-id="{{ $constructor->id }}" data-target="#Modal"><i class="ti-pencil-alt"></i></a>
                                                     <a href="" class="btn btn-simple btn-info btn-icon del_brand remove" data-id="{{ $constructor->id }}" data-body="{{ "constructor" }}"  ><i class="ti-trash"></i></a>

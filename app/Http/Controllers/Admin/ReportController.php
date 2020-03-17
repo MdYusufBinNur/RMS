@@ -23,6 +23,7 @@ class ReportController extends Controller
     public function index()
     {
         $reports = $this->reportRepository->index();
+        //return $reports;
         return view('Admin.Report.report_list', compact('reports'));
     }
 

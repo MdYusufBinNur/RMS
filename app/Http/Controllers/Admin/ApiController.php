@@ -47,4 +47,32 @@ class ApiController extends Controller
         return $this->apiRepository->register($request);
     }
 
+    public function previous_comments(Request $request){
+        return $this->commentRepository->previous_comments($request);
+    }
+
+    public function comments_of_a_task(Request $request){
+        return $this->commentRepository->comments_of_a_task($request);
+    }
+
+    public function previous_comments_of_a_task(Request $request){
+        return $this->commentRepository->previous_comments_of_a_task($request);
+    }
+
+    public function all_reports($constructor_id){
+        return $this->reportRepository->all_reports($constructor_id);
+    }
+
+    public function task_done(Request $request){
+        return $this->reportRepository->task_done($request);
+    }
+
+    public function all_pending_task(Request $request){
+        return $this->reportRepository->all_pending_tasks($request);
+    }
+
+    public function all_finished_task(Request $request){
+        return $this->reportRepository->all_finished_tasks($request);
+    }
+
 }

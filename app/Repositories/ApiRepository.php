@@ -3,6 +3,7 @@
 
 namespace App\Repositories;
 
+use App\Admin\Constructor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -19,9 +20,16 @@ class ApiRepository
             $response = array();
             $response['error'] = false;
             $response['message'] = "Login Successful";
+            if ($user->role == "member"){
+                $response['user'] = $user->member;
+            }
+            if ($user->role == "constructor"){
+                $response['user'] = $user->constructor;
+            }
             $response['user'] = $user;
+            $response['access_token'] = $user->createToken('authToken')->accessToken;
             //$data = json_encode($response)
-            return $response;
+            return response()->json($response,200);
         }
         $response = array();
         $response['error'] = true;
@@ -56,6 +64,7 @@ class ApiRepository
             'code' => 401,
         ], 401);
     }
+
 
 
 }

@@ -1,0 +1,79 @@
+// Comments Data Model to save in DB
+ {
+        "member_id": 1,
+        "constructor_id": 1,
+        "task_id": 1,
+        "geo_points": "123456",
+        "comment": "Done",
+        "photos": "[]",
+        "rating": 3,
+        "created_at": "2020-02-23 01:07:14",
+        "updated_at": "2020-02-23 01:07:14"
+    },
+
+
+// Report Data Model to save in DB
+{
+
+        "constructor_id": 1,
+        "area_id": 3,
+        "task_id": 1,
+        "report_details": "We are committed to provide the excellent services to our clients and our business partners. We take pride of our services and are determined to continuously enhance our reputation and relationships with wider stakeholders.",
+        "photos": "image/Constructor_Image/1032118324.png",
+        "created_at": null,
+        "updated_at": null
+    },
+
+// Member registration data (JSON format)
+{
+	"name" : "Yusuf",
+	"email" : "Yusuf@gmail.com",
+	"password": "password",
+	"phone" : "01815625375",
+	"photo" : "",
+	"national_id" : "1544451184514649161",
+	"address" : "Chittagong"
+}
+
+// Response
+{
+    "error": false,
+    "message": "Registered Successfully"
+}
+
+
+		        API's
+----------------------------------
+Member Registration(post method)
+1) http://rms.chickdairsfjhighschool.edu.bd/api/members
+
+// Login(post method)
+2) http://rms.chickdairsfjhighschool.edu.bd/api/login/
+
+//Comments(post method)
+3) http://rms.chickdairsfjhighschool.edu.bd/api/comments/
+
+//Reports(post method)
+4) http://rms.chickdairsfjhighschool.edu.bd/api/reports/
+
+//Get All Comments Of a member (Post method.  pass a param named member_id)
+5)http://rms.chickdairsfjhighschool.edu.bd/api/previous_comments
+
+//Get all comments for a task of a memeber (Post method.  pass  params named member_id, task_id)
+6)http://rms.chickdairsfjhighschool.edu.bd/api/previous_comments_of_a_task
+
+//Get all comments of a task (Post method.  pass a param named task_id)
+7)http://rms.chickdairsfjhighschool.edu.bd/api/comments_of_a_task
+
+//Get All Reports of a constructor (Post method.  pass a param named constructor_id)
+8)http://rms.chickdairsfjhighschool.edu.bd/api/all_reports
+
+//Get All Finished Task List of a constructor (Post method.  pass a param named constructor_id)
+9)http://rms.chickdairsfjhighschool.edu.bd/api/all_finished_task
+
+//Get All Pending Task List of a constructor (Post method.  pass a param named constructor_id)
+10)http://rms.chickdairsfjhighschool.edu.bd/api/all_pending_task
+
+//Submit a task if successfully completed (Post method.  pass a params named constructor_id, task_id)
+11) http://rms.chickdairsfjhighschool.edu.bd/api/task_done
+

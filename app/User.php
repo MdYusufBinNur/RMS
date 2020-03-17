@@ -7,10 +7,11 @@ use App\Admin\Member;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -40,10 +41,10 @@ class User extends Authenticatable
     ];
 
     public function member(){
-        return $this->hasMany(Member::class);
+        return $this->hasOne(Member::class);
     }
 
     public function constructor(){
-        return $this->hasMany(Constructor::class);
+        return $this->hasOne(Constructor::class);
     }
 }

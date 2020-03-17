@@ -20,83 +20,79 @@ class MemberRepository extends Common implements Base
     public function index()
     {
         // TODO: Implement create() method.
-        return Member::all();
+        return Member::with('user')->get();
     }
 
     public function store(Request $request)
     {
         // TODO: Implement store() method.
 
-        $checkEmail = User::where('email',$request->input('email'))->first();
-            $image = "";
+        //return $request;
+        $checkEmail = User::where('email', $request->input('email'))->first();
+        $image = "";
 
-            $dir = "Member_Image";
-            if (!empty($request->file('photo'))){
-                $image =  $this->save_file($request->file('photo'), $dir);
-            }
-            $member['phone'] = $request->phone;
-            $member['photo'] = $image;
-            $member['national_id'] = $request->national_id;
-            $member['address'] = $request->address;
+        $dir = "Member_Image";
+        if (!empty($request->file('photo'))) {
+            $image = $this->save_file($request->file('photo'), $dir);
+        }
+        $member['phone'] = $request->phone;
+        $member['photo'] = $image;
+        $member['national_id'] = $request->national_id;
+        $member['address'] = $request->address;
 
-            if (!empty($request->member_id)){
-
-                $isAvailable = Member::find($request->input('member_id'));
-                if (!empty($isAvailable)){
-                    if (empty($image)){
-                        $member['photo'] = $isAvailable->photo;
-                    }
-                    else{
-                        File::delete($isAvailable->photo);
-                    }
-
-                    $isAvailable->update($member);
-
-                    $response = array();
-                    $response['error'] = false;
-                    $response['message'] = "Updated Successfully";
-                    return $response;
+        if (!empty($request->member_id)) {
+            $isAvailable = Member::find($request->input('member_id'));
+            if (!empty($isAvailable)) {
+                if (empty($image)) {
+                    $member['photo'] = $isAvailable->photo;
+                } else {
+                    File::delete($isAvailable->photo);
                 }
-                else{
-                    $response = array();
-                    $response['error'] = true;
-                    $response['message'] = "Failed to Register";
-                    return $response;
-                }
+
+                $isAvailable->update($member);
+                $response = array();
+                $response['error'] = false;
+                $response['message'] = "Updated Successfully";
+                return $response;
+            } else {
+                $response = array();
+                $response['error'] = true;
+                $response['message'] = "Failed to Register";
+                return $response;
             }
-            else{
+        } else {
 
-                if (empty($checkEmail)){
-                    $newUser = new User();
-                    $newUser->name = $request->input('name');
-                    $newUser->email = $request->input('email');
-                    $newUser->role = 'user';
-                    $newUser->email_verified_at = now();
-                    $newUser->password = Hash::make($request->input('password'));
-                    $newUser->remember_token = Str::random(10);
+            if (empty($checkEmail)) {
+                $newUser = new User();
+                $newUser->name = $request->input('name');
+                $newUser->email = $request->input('email');
+                $newUser->role = 'user';
+                $newUser->email_verified_at = now();
+                $newUser->password = Hash::make($request->input('password'));
+                $newUser->remember_token = Str::random(10);
 
-                    if ($newUser->save()){
-                        $member['user_id'] = $newUser->id;
-                        if (Member::create($member)) {
-                            $response = array();
-                            $response['error'] = false;
-                            $response['message'] = "Registered Successfully";
-                            return $response;
-                        }
-                }    else{
+                if ($newUser->save()) {
+                    $member['user_id'] = $newUser->id;
+                    if (Member::create($member)) {
                         $response = array();
-                        $response['error'] = true;
-                        $response['message'] = "Email Already Exist";
+                        $response['error'] = false;
+                        $response['message'] = "Registered Successfully";
                         return $response;
                     }
-
-                }else{
+                } else {
                     $response = array();
                     $response['error'] = true;
-                    $response['message'] = "Failed to Register";
+                    $response['message'] = "Email Already Exist";
                     return $response;
                 }
+
+            } else {
+                $response = array();
+                $response['error'] = true;
+                $response['message'] = "Failed to Register";
+                return $response;
             }
+        }
 
         $response = array();
         $response['error'] = true;
@@ -107,7 +103,7 @@ class MemberRepository extends Common implements Base
     public function show(Model $model)
     {
         // TODO: Implement show() method.
-        return Member::with('user')->where('id','=',$model->id)->first();
+        return Member::with('user')->where('id', '=', $model->id)->first();
     }
 
     public function destroy(Model $model)
