@@ -70,7 +70,10 @@ class ReportRepository extends Common implements Base
     public function all_reports(Request $request)
     {
         if ($request->input('constructor_id') != null) {
-            return Constructor::with('user', 'report', 'report.task', 'report.area')->where('id', '=', $request->input('constructor_id'))->first();
+            return response()->json(
+                Constructor::with('user', 'report', 'report.task', 'report.area')
+                    ->where('id', '=', $request->input('constructor_id'))
+                    ->first(),200);
         }
         return response()->json("No Data Found", 500);
     }

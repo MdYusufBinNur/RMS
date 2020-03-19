@@ -59,8 +59,8 @@ class ApiController extends Controller
         return $this->commentRepository->previous_comments_of_a_task($request);
     }
 
-    public function all_reports($constructor_id){
-        return $this->reportRepository->all_reports($constructor_id);
+    public function all_reports(Request $request){
+        return $this->reportRepository->all_reports($request);
     }
 
     public function task_done(Request $request){
