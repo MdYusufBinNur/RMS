@@ -7,19 +7,21 @@ use App\Repositories\ApiRepository;
 use App\Repositories\CommentRepository;
 use App\Repositories\MemberRepository;
 use App\Repositories\ReportRepository;
+use App\Repositories\ConstructorRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class ApiController extends Controller
 {
-    public $memberRepository, $commentRepository, $reportRepository, $apiRepository;
+    public $memberRepository, $commentRepository, $reportRepository, $apiRepository, $constructorRepository;
 
-    public function __construct(ApiRepository $apiRepository,MemberRepository $memberRepository, CommentRepository $commentRepository, ReportRepository $reportRepository)
+    public function __construct(ApiRepository $apiRepository,MemberRepository $memberRepository, CommentRepository $commentRepository, ReportRepository $reportRepository, ConstructorRepository $constructorRepository)
     {
         $this->apiRepository = $apiRepository;
         $this->memberRepository = $memberRepository;
         $this->commentRepository = $commentRepository;
         $this->reportRepository = $reportRepository;
+        $this->constructorRepository = $constructorRepository;
     }
 
     public function userLogin(Request $request)
@@ -75,4 +77,11 @@ class ApiController extends Controller
         return $this->reportRepository->all_finished_tasks($request);
     }
 
+    public function all_members(){
+        return $this->memberRepository->all_members();
+    }
+
+    public function all_constructors(){
+        return $this->constructorRepository->all_constructors();
+    }
 }

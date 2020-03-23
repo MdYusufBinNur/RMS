@@ -28,8 +28,9 @@ header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 Route::post('/login', 'Admin\ApiController@userLogin');
 
 Route::group(['namespace' => 'Admin'], function () {
-    Route::post('members', 'MemberController@store'); //done
-
+    Route::get('/members', 'ApiController@all_members');
+    Route::get('/constructors', 'ApiController@all_constructors');
+    Route::post('/members', 'MemberController@store'); //done
 //    Route::middleware('auth:api')->resource('comments', 'CommentController')->only('store','index');
     Route::resource('comments', 'CommentController')->only('store');
 

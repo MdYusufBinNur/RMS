@@ -122,4 +122,7 @@ class ConstructorRepository extends Common implements Base
             'role' => ['required'],
         ]);
     }
+    public function all_constructors(){
+        return Constructor::with('user')->get();
+    }
 }

@@ -111,4 +111,7 @@ class MemberRepository extends Common implements Base
         // TODO: Implement destroy() method.
         return Member::find($model->id)->delete();
     }
+    public function all_members(){
+        return Member::with('user')->get();
+    }
 }
