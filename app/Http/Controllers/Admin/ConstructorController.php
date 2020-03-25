@@ -44,10 +44,13 @@ class ConstructorController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->constructorRepository->store($request);
+        ///return $this->constructorRepository->store($request);
         return $this->constructorRepository->send_notification($this->constructorRepository->store($request));
     }
 
+    public function store_from_api(Request $request){
+        return $this->constructorRepository->store_from_api($request);
+    }
     /**
      * Display the specified resource.
      *
