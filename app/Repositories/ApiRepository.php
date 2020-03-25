@@ -4,7 +4,9 @@
 namespace App\Repositories;
 
 use App\Admin\Constructor;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class ApiRepository
@@ -27,7 +29,7 @@ class ApiRepository
                 $response['user'] = $user->constructor;
             }
             $response['user'] = $user;
-            $response['access_token'] = $user->createToken('authToken')->accessToken;
+            $response['access_token'] = $user->remember_token;
             //$data = json_encode($response)
             return response()->json($response,200);
         }
@@ -66,5 +68,32 @@ class ApiRepository
     }
 
 
+    public function reset_password(Request $request){
+        $remember_token  = $request->input('_token');
+        $email = $request->input('email');
+        $password = $request->input('pass');
+        $checkUser = User::where('email','=',$email)->first();
+
+        if(!empty($checkUser)){
+            if ($checkUser->remember_token == $remember_token){
+                $data['password'] = Hash::make($password);
+                if ($checkUser->update($data)){
+                    $response = array();
+                    $response['error'] = false;
+                    $response['message'] = "Password Reset Successfully Done";
+                    return $response;
+                }
+            }else{
+                $response = array();
+                $response['error'] = true;
+                $response['message'] = "Token invalid";
+                return $response;
+            }
+        }
+        $response = array();
+        $response['error'] = true;
+        $response['message'] = "Credential don't match";
+        return $response;
+    }
 
 }

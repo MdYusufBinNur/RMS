@@ -154,7 +154,6 @@ class ConstructorRepository extends Common implements Base
                 $response['error'] = true;
                 $response['message'] = "Email Already Exist";
                 return $response;
-
             }
             $newUser = new User();
             $newUser->name = $request->name;

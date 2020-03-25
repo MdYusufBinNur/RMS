@@ -31,6 +31,7 @@ Route::group(['namespace' => 'Admin'], function () {
     Route::get('/members', 'ApiController@all_members');
     Route::get('/constructors', 'ApiController@all_constructors');
     Route::post('/members', 'MemberController@store'); //done
+    Route::post('/reset_password', 'ApiController@reset'); //done
     Route::post('/constructors', 'ConstructorController@store_from_api'); //done
 //    Route::middleware('auth:api')->resource('comments', 'CommentController')->only('store','index');
     Route::resource('comments', 'CommentController')->only('store');

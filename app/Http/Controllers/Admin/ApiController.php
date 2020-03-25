@@ -84,4 +84,8 @@ class ApiController extends Controller
     public function all_constructors(){
         return $this->constructorRepository->all_constructors();
     }
+
+    public function reset(Request $request){
+        return $this->apiRepository->reset_password($request);
+    }
 }
