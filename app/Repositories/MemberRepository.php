@@ -40,6 +40,7 @@ class MemberRepository extends Common implements Base
         $member['national_id'] = $request->national_id;
         $member['address'] = $request->address;
 
+        $data['user'] = $request->name;
         if (!empty($request->member_id)) {
             $isAvailable = Member::find($request->input('member_id'));
             if (!empty($isAvailable)) {
@@ -49,11 +50,20 @@ class MemberRepository extends Common implements Base
                     File::delete($isAvailable->photo);
                 }
 
-                $isAvailable->update($member);
-                $response = array();
-                $response['error'] = false;
-                $response['message'] = "Updated Successfully";
-                return $response;
+                if ($isAvailable->update($member)){
+                    $user = User::find($isAvailable->user_id);
+                    if ($user->update($data)){
+                        $response = array();
+                        $response['error'] = false;
+                        $response['message'] = "Updated Successfully";
+                        return $response;
+                    }
+                    $response = array();
+                    $response['error'] = true;
+                    $response['message'] = "Failed to update name";
+                    return $response;
+                }
+
             } else {
                 $response = array();
                 $response['error'] = true;

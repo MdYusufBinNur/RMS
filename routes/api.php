@@ -28,12 +28,17 @@ header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 Route::post('/login', 'Admin\ApiController@userLogin');
 
 Route::group(['namespace' => 'Admin'], function () {
+
     Route::get('/members', 'ApiController@all_members');
+
     Route::get('/constructors', 'ApiController@all_constructors');
+
     Route::post('/members', 'MemberController@store'); //done
+
     Route::post('/reset_password', 'ApiController@reset'); //done
+
     Route::post('/constructors', 'ConstructorController@store_from_api'); //done
-//    Route::middleware('auth:api')->resource('comments', 'CommentController')->only('store','index');
+
     Route::resource('comments', 'CommentController')->only('store');
 
     Route::post('/previous_comments', 'ApiController@previous_comments');
@@ -52,7 +57,7 @@ Route::group(['namespace' => 'Admin'], function () {
 
     Route::resource('reports', 'ReportController')->only('store');
 
-    Route::middleware('auth:api')->post('logout', 'ApiController@logout');
+    Route::post('logout', 'ApiController@logout');
 
 });
 

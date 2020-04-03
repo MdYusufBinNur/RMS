@@ -49,7 +49,7 @@ class ApiRepository
             $user->save();
 
             return response()->json([
-                'message' => 'Thank you for using our application',
+                'message' => 'Successfully Logout',
             ]);
         }
 

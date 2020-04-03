@@ -111,9 +111,6 @@ class ConstructorRepository extends Common implements Base
 
 
         $user['name'] = $request->name;
-        $user['email'] = $request->email;
-        $user['role'] = 'constructor';
-        $user['password'] = Hash::make($request->password);
 
         $constructor['phone'] = $request->phone;
         $constructor['photo'] = $image;
@@ -175,7 +172,7 @@ class ConstructorRepository extends Common implements Base
             else{
                 $response = array();
                 $response['error'] = true;
-                $response['message'] = "Registeration Process Failed";
+                $response['message'] = "Registration Process Failed";
                 return $response;
             }
         }

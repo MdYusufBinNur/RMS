@@ -26,15 +26,14 @@ class CommentRepository extends Common implements Base
 
     public function store(Request $request)
     {
-        //return $request;
+
         // TODO: Implement store() method.
         $image = [];
-
         $dir = "Comments_Images";
-
-        if (!empty($request->file('photo'))){
+        if (!empty($request->file('photo'))) {
             foreach ($request->file('photo') as $i=>$item) {
-                $image[] =  $this->save_file($request[$i]->file('photo'), $dir);
+                $new_image =  $this->save_file($item, $dir);
+                array_push($image, $new_image);
             }
         }
 
