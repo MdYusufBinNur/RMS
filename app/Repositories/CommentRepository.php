@@ -23,15 +23,14 @@ class CommentRepository extends Common implements Base
         // TODO: Implement create() method.
     }
 
-
     public function store(Request $request)
     {
 
         // TODO: Implement store() method.
         $image = [];
         $dir = "Comments_Images";
-        if (!empty($request->file('photo'))) {
-            foreach ($request->file('photo') as $i=>$item) {
+        if (!empty($request->file('photos'))) {
+            foreach ($request->file('photos') as $i=>$item) {
                 $new_image =  $this->save_file($item, $dir);
                 array_push($image, $new_image);
             }
@@ -85,15 +84,20 @@ class CommentRepository extends Common implements Base
     public function destroy(Model $model)
     {
         // TODO: Implement destroy() method.
+
+
     }
 
     public function previous_comments(Request $request){
         $user_id = $request->input('user_id');
         if ($user_id != null){
-            return Member::with('user','comment','comment.task','comment.constructor')
+            $data = Member::with('user','comment','comment.task','comment.constructor')
                 ->where('id','=',$user_id)
                 ->orderBy('id','DESC')
                 ->first();
+            if ($data){
+                return $data;
+            }
         }
         return response()->json("No Data Found", 401);
     }
@@ -107,6 +111,7 @@ class CommentRepository extends Common implements Base
         }
         return response()->json("No Data Found", 401);
     }
+
     public function comments_of_a_task(Request $request){
         $task_id = $request->input('task_id');
         if ($task_id != null){

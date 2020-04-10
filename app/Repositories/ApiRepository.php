@@ -67,7 +67,6 @@ class ApiRepository
         ], 401);
     }
 
-
     public function reset_password(Request $request){
         $remember_token  = $request->input('_token');
         $email = $request->input('email');

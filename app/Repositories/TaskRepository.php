@@ -3,7 +3,7 @@
 
 namespace App\Repositories;
 
-
+use Illuminate\Support\Facades\File;
 use App\Admin\Area;
 use App\Admin\Constructor;
 use App\Admin\Task;
@@ -11,6 +11,7 @@ use App\Helper\Base;
 use App\Helper\Common;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class TaskRepository extends Common implements Base
 {
@@ -50,8 +51,27 @@ class TaskRepository extends Common implements Base
                 }
             }
         } else {
-            if (Task::create($data)) {
-                return 'success';
+
+            $qrName = ''.rand(0,999999).'.png';
+            $task = new Task();
+            $task->constructor_id =  $request->constructor_id;
+            $task->area_id =  $request->area_id;
+            $task->task_name =  $request->task_name;
+            $task->task_details =  $request->task_details;
+            $task->task_budget =  $request->task_budget;
+            $task->qr_code = $qrName;
+
+            if ($task->save()) {
+                $path = 'image/QRCode/';
+                if(!File::exists($path)) {
+                    File::makeDirectory($path,false, false);
+                }
+                $qrcode = "RMS"."-C_".$request->constructor_id."-T_".$task->id.'-A_'.$request->area_id;
+                if (QrCode::size(500)
+                    ->format('png')
+                    ->generate($qrcode, public_path('image/QRCode/'.$qrName))){
+                    return 'success';
+                }
             } else {
                 return 'error';
             }

@@ -26,8 +26,8 @@ class ReportRepository extends Common implements Base
         // TODO: Implement store() method.
         $image = [];
         $dir = "Report_Images";
-        if (!empty($request->file('photo'))) {
-            foreach ($request->file('photo') as $i => $item) {
+        if (!empty($request->file('photos'))) {
+            foreach ($request->file('photos') as $i => $item) {
                 $new_image = $this->save_file($item, $dir);
                 array_push($image, $new_image);
             }
