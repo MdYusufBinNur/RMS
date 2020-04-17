@@ -10,7 +10,6 @@
                             @csrf()
                             <div class="card-header">
                                 <a href="{{ url('areas') }}" class="btn btn-outline-dark  pull-right">Area List</a>
-
                                 <div class="form-group pull-left">
                                     <h5><strong>Area</strong></h5>
                                 </div>

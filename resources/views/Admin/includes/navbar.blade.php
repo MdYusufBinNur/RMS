@@ -10,7 +10,7 @@
                 <span class="icon-bar bar2"></span>
                 <span class="icon-bar bar3"></span>
             </button>
-            <a class="navbar-brand" href="#Dashboard">
+            <a class="navbar-brand" href="#">
                 Overview
             </a>
         </div>

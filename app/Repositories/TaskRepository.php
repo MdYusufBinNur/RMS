@@ -67,7 +67,7 @@ class TaskRepository extends Common implements Base
                     File::makeDirectory($path,false, false);
                 }
                 $qrcode = "RMS"."-C_".$request->constructor_id."-T_".$task->id.'-A_'.$request->area_id;
-                if (QrCode::size(500)
+                if (QrCode::size(1000)
                     ->format('png')
                     ->generate($qrcode, public_path('image/QRCode/'.$qrName))){
                     return 'success';

@@ -25,6 +25,7 @@
                                         <th class="text-center"> Task Name</th>
                                         <th class="text-center"> Constructor</th>
                                         <th class="text-center"> Area</th>
+                                        <th class="text-center"> QR Code</th>
                                         <th class="text-center disabled-sorting">Actions</th>
                                     </tr>
                                     </thead>
@@ -36,9 +37,11 @@
                                                 <td class="text-center">{!! $task->task_name !!}</td>
                                                 <td class="text-center">{!! $task->constructor->user->name !!}</td>
                                                 <td class="text-center">{!! $task->area->area_name !!}</td>
+                                                <td class="text-center"><img src="{{ asset('image/QRCode/'.$task->qr_code) }}" alt=""> </td>
 
                                                 <td class="text-center">
                                                     <a href="#" class="btn btn-simple btn-warning btn-icon edit" data-toggle="modal" data-body="{{ "task" }}" data-id="{{ $task->id }}" data-target="#Modal"><i class="ti-pencil-alt"></i></a>
+                                                    <a href="{{ url('print_media/'.$task->qr_code) }}" class="btn btn-simple btn-success btn-icon print" target="_blank"><i class="ti-printer"></i></a>
                                                 </td>
                                             </tr>
 
@@ -87,7 +90,6 @@
 
                                 </select>
                             </div>
-
 
                             <div class="form-group">
                                 <label for="old_constructor">Selected Area</label>

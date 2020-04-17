@@ -27,6 +27,7 @@ class TaskController extends Controller
         $tasks = $results['tasks'];
         $areas = $results['areas'];
         $constructors = $results['constructors'];
+       // return  $tasks;
         return  view('Admin.Task.task_list', compact('tasks', 'constructors', 'areas'));
     }
 
@@ -51,7 +52,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->taskRepository->store($request);
+//        return $this->taskRepository->store($request);
         return $this->taskRepository->send_notification($this->taskRepository->store($request));
     }
 
@@ -97,6 +98,11 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        $this->taskRepository->destroy($task);
+        return $this->taskRepository->destroy($task);
+    }
+
+    public function print($img)
+    {
+        return view('Admin.Task.print',compact('img'));
     }
 }
