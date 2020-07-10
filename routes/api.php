@@ -60,7 +60,8 @@ Route::group(['namespace' => 'Admin'], function () {
     Route::post('logout', 'ApiController@logout');
 
 });
-
+Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail'); // send a reset link to email
+Route::post('/password/reset', 'Api\ResetPasswordController@reset');
 /*Route::middleware('auth:api')->post('logout', function (Request $request) {
 
     if (auth()->user()) {

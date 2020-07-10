@@ -101,7 +101,7 @@ class TaskController extends Controller
         return $this->taskRepository->destroy($task);
     }
 
-    public function print($img)
+    public function print_media($img)
     {
         return view('Admin.Task.print',compact('img'));
     }
