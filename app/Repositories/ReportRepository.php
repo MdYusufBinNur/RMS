@@ -108,6 +108,18 @@ class ReportRepository extends Common implements Base
         return response()->json("No Data Found", 500);
     }
 
+    public function finished_tasks(){
+        return Task::with('constructor','constructor.user','report', 'report.task', 'report.area')
+            ->where('isFinished', '=', 1)
+            ->get();
+    }
+
+    public function pending_tasks(){
+        return Task::with('constructor','constructor.user','report', 'report.task', 'report.area')
+            ->where('isFinished', '=', 0)
+            ->get();
+    }
+
     public function all_pending_tasks(Request $request){
         if ($request->input('constructor_id') != null) {
             return Task::with('constructor','constructor.user','report', 'report.task', 'report.area')
@@ -116,5 +128,12 @@ class ReportRepository extends Common implements Base
                 ->get();
         }
         return response()->json("No Data Found", 500);
+    }
+
+
+
+    public function all_tasks()
+    {
+
     }
 }

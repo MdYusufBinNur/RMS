@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Admin\Constructor;
 use App\Admin\Report;
 use App\Http\Controllers\Controller;
 use App\Repositories\ReportRepository;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ReportController extends Controller
 {
@@ -30,7 +34,7 @@ class ReportController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function create()
     {
@@ -40,8 +44,8 @@ class ReportController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return void
+     * @param Request $request
+     * @return array
      */
     public function store(Request $request)
     {
@@ -52,8 +56,8 @@ class ReportController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Admin\Report  $report
-     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object
+     * @param Report $report
+     * @return Builder|Model|object
      */
     public function show(Report $report)
     {
@@ -63,8 +67,8 @@ class ReportController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Admin\Report  $report
-     * @return \Illuminate\Http\Response
+     * @param Report $report
+     * @return void
      */
     public function edit(Report $report)
     {
@@ -74,9 +78,9 @@ class ReportController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Admin\Report  $report
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Report $report
+     * @return void
      */
     public function update(Request $request, Report $report)
     {
@@ -86,11 +90,38 @@ class ReportController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Admin\Report  $report
-     * @return \Illuminate\Http\Response
+     * @param Report $report
+     * @return void
      */
     public function destroy(Report $report)
     {
         $this->reportRepository->destroy($report);
+    }
+
+    public function get_report($report_sate)
+    {
+        switch ($report_sate){
+            case 'pending':
+                $flag_name = "On Going Project";
+                $tasks = $this->reportRepository->pending_tasks();
+                break;
+            case 'finished':
+                $flag_name = "Finished Project";
+                $tasks = $this->reportRepository->finished_tasks();
+                break;
+            default:
+                $flag_name = "All Project";
+                $tasks = $this->reportRepository->all_tasks();
+                break;
+        }
+
+        return view('Admin.Report.list', compact('tasks', 'flag_name'));
+    }
+
+    public function get_rank()
+    {
+        $constructors = Constructor::with('user')->where('available', '=', true)->orderByDesc('rating')->get();
+
+        return view('Admin.Report.rank', compact('constructors'));
     }
 }

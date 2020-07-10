@@ -28,7 +28,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['auth']] , function () {
     Route::resource('reports', 'ReportController');
     Route::resource('tasks', 'TaskController');
     Route::resource('members', 'MemberController');
-/*    Route::resource('applies', 'ApplyController')->only(['index', 'show']);;*/
+    Route::get('/get_reports/{state}', 'ReportController@get_report');
+    Route::get('/get_rank', 'ReportController@get_rank');
     Route::get('/print_media/{img}','TaskController@print_media');
 });
 

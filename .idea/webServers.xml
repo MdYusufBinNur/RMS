@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="1e55744b-edd9-444f-b1f4-d62fb572394f" name="rms-root" url="http://chickdairsfjhighschool.edu.bd">
+        <fileTransfer host="chickdairsfjhighschool.edu.bd" port="21" rootFolder="/public_html/rms">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
