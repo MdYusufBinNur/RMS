@@ -120,7 +120,8 @@ class ReportController extends Controller
 
     public function get_rank()
     {
-        $constructors = Constructor::with('user')->where('available', '=', true)->orderByDesc('rating')->get();
+        $constructors = Constructor::with('user')->where('available', '=', true)->orderBy('rating','desc')->get();
+        //return $constructors;
 
         return view('Admin.Report.rank', compact('constructors'));
     }
