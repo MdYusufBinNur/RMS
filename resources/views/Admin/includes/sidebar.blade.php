@@ -12,7 +12,7 @@
             @if(!empty(\Illuminate\Support\Facades\Auth::user()))
                 {{ \Illuminate\Support\Facades\Auth::user()->name }}
             @else
-                ADMIN
+                YUSUF
             @endif
         </a>
     </div>

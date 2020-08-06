@@ -29,6 +29,9 @@ class ApiController extends Controller
         return $this->apiRepository->sign_in($request);
     }
 
+    public  function verify_email(Request $request){
+        return $this->apiRepository->verifyEmail($request);
+    }
     public function logout()
     {
         return $this->apiRepository->logout();
@@ -87,5 +90,9 @@ class ApiController extends Controller
 
     public function reset(Request $request){
         return $this->apiRepository->reset_password($request);
+    }
+
+    public function all_tasks(){
+
     }
 }

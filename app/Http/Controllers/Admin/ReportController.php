@@ -109,6 +109,7 @@ class ReportController extends Controller
                 $flag_name = "Finished Project";
                 $tasks = $this->reportRepository->finished_tasks();
                 break;
+
             default:
                 $flag_name = "All Project";
                 $tasks = $this->reportRepository->all_tasks();
@@ -120,7 +121,7 @@ class ReportController extends Controller
 
     public function get_rank()
     {
-        $constructors = Constructor::with('user')->where('available', '=', true)->orderBy('rating','desc')->get();
+        $constructors = Constructor::with('user')->where('available', '=', true)->orderBy('rating','desc')->withCount('task')->get();
         //return $constructors;
 
         return view('Admin.Report.rank', compact('constructors'));

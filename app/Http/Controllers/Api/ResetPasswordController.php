@@ -32,5 +32,4 @@ class ResetPasswordController extends Controller
         return response(['error'=> trans($response)], 422);
     }
 
-
 }

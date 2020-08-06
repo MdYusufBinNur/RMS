@@ -37,7 +37,7 @@
                                                 <td class="text-center">{!! $comment->member->user->name !!}</td>
                                                 <td class="text-center">{!! $comment->task->task_name !!}</td>
                                                 <td class="text-center">{!! $comment->task->area->area_thana !!}</td>
-                                                <td class="text-center">{!! $comment->message !!}</td>
+                                                <td class="text-center">{!! $comment->comment !!}</td>
 
                                                 <td class="text-center">
                                                     <a href="#" class="btn btn-simple btn-warning btn-icon edit" data-toggle="modal" data-body="{{ "comment" }}" data-id="{{ $comment->id }}" data-target="#Modal"><i class="ti-pencil-alt"></i></a>

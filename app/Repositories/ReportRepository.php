@@ -25,13 +25,16 @@ class ReportRepository extends Common implements Base
     {
         // TODO: Implement store() method.
         $image = [];
+
         $dir = "Report_Images";
+
         if (!empty($request->file('photos'))) {
             foreach ($request->file('photos') as $i => $item) {
                 $new_image = $this->save_file($item, $dir);
                 array_push($image, $new_image);
             }
         }
+
         $report['constructor_id'] = $request->constructor_id;
         $report['task_id'] = $request->task_id;
         $report['area_id'] = $request->area_id;
@@ -54,7 +57,6 @@ class ReportRepository extends Common implements Base
         $response['error'] = true;
         $response['message'] = "Try Again";
         return $response;
-
     }
 
     public function show(Model $model)
@@ -83,7 +85,7 @@ class ReportRepository extends Common implements Base
     {
         if ($request->input('task_id') != null && $request->input('constructor_id') != null ){
             $data['isFinished'] = 1;
-            if ( Task::find($request->input('task_id'))->update($data)){
+            if (Task::find($request->input('task_id'))->update($data)){
                 $response = array();
                 $response['error'] = false;
                 $response['message'] = "Successfully Submitted";
@@ -134,6 +136,7 @@ class ReportRepository extends Common implements Base
 
     public function all_tasks()
     {
-
+        return Task::with('constructor','constructor.user','report', 'report.task', 'report.area')
+            ->get();
     }
 }

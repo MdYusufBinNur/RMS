@@ -9,13 +9,18 @@ use App\Helper\Base;
 use App\Helper\Common;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use App\Notifications\UserRegisteredNotification;
 use Illuminate\Support\Str;
 
 class MemberRepository extends Common implements Base
 {
+    use VerifiesEmails;
+    public $request_mail;
+
 
     public function index()
     {
@@ -41,6 +46,8 @@ class MemberRepository extends Common implements Base
         $member['address'] = $request->address;
 
         $data['user'] = $request->name;
+
+
         if (!empty($request->member_id)) {
             $isAvailable = Member::find($request->input('member_id'));
             if (!empty($isAvailable)) {
@@ -72,26 +79,31 @@ class MemberRepository extends Common implements Base
             }
         } else {
 
+
             if (empty($checkEmail)) {
+
                 $newUser = new User();
                 $newUser->name = $request->input('name');
                 $newUser->email = $request->input('email');
                 $newUser->role = 'user';
-                $newUser->email_verified_at = now();
                 $newUser->password = Hash::make($request->input('password'));
-                $newUser->remember_token = Str::random(10);
+                $newUser->remember_token =  $code = rand(000000,999999);
 
                 if ($newUser->save()) {
+                    $this->request_mail = $request->input('email');
+                    $newUser->verifyUser($newUser->remember_token);
                     $member['user_id'] = $newUser->id;
                     if (Member::create($member)) {
                         $response = array();
                         $response['error'] = false;
+                        $response['verified'] = false;
                         $response['message'] = "Registered Successfully";
                         return $response;
                     }
                 } else {
                     $response = array();
                     $response['error'] = true;
+                    $response['verified'] = false;
                     $response['message'] = "Email Already Exist";
                     return $response;
                 }
@@ -99,6 +111,7 @@ class MemberRepository extends Common implements Base
             } else {
                 $response = array();
                 $response['error'] = true;
+                $response['verified'] = false;
                 $response['message'] = "Failed to Register";
                 return $response;
             }

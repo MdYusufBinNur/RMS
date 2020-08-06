@@ -10,7 +10,7 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="title"> List</h4>
+                    <h4 class="title">Report List</h4>
                     <br>
 
                     <div class="card">
@@ -106,10 +106,8 @@
                                   </p>
                             </div>
 
-                            <div class="form-group">
-                                <div class="col-4">
-                                    <img id="report_image" src="" alt="">
-                                </div>
+                            <div class="form-group"  id="report_image">
+
                             </div>
 
                         </div>

@@ -89,7 +89,7 @@ class CommentRepository extends Common implements Base
     }
 
     public function previous_comments(Request $request){
-        $user_id = $request->input('user_id');
+        $user_id = $request->input('member_id');
         if ($user_id != null){
             $data = Member::with('user','comment','comment.task','comment.constructor')
                 ->where('id','=',$user_id)

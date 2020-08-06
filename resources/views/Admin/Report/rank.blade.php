@@ -24,6 +24,7 @@
                                         <th class="text-center"> Email</th>
                                         <th class="text-center"> Phone</th>
                                         <th class="text-center"> Rating</th>
+                                        <th class="text-center"> Project Assigned</th>
 
                                     </tr>
                                     </thead>
@@ -36,6 +37,9 @@
                                                 <td class="text-center">{!! $constructor->phone !!}</td>
                                                 <td class="text-center">
                                                    {{ $constructor->rating }}
+                                                </td>
+                                                <td class="text-center">
+                                                   {{ $constructor->task_count }}
                                                 </td>
                                             </tr>
                                         @endforeach

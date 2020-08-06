@@ -9,70 +9,68 @@ $().ready(function() {
             class: 'navbar-form navbar-left navbar-search-form'
         }
     });
-      let table = $('#datatables').DataTable();
-                // Edit record
-                table.on( 'click', '.edit', function (e) {
+    let table = $('#datatables').DataTable();
+    // Edit record
+    table.on( 'click', '.edit', function (e) {
 
-                    let id = $(this).data('id');
-                    let url = $(this).data('body');
+        let id = $(this).data('id');
+        let url = $(this).data('body');
 
-                    //alert(url)
+        //alert(url)
+        $.ajax({
+            url: url+'s/'+id,
+            method: 'GET',
+            success: function (response) {
+                loadData(url, response)
+
+            }, error: function (response) {
+
+                modalHide();
+                swal("Failed to load data", "", "error");
+            }
+        })
+    });
+
+    // Delete a record
+    table.on( 'click', '.remove', function (e) {
+        //alert('HH')
+        let id = $(this).data('id');
+        let url = $(this).data('body');
+        //alert(url)
+        swal({
+                title: "Are you sure?",
+                text: "You won't be able to retrieve this file.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, archive it!",
+                cancelButtonText: "No, cancel please!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function(isConfirm){
+                if (isConfirm) {
                     $.ajax({
                         url: url+'s/'+id,
-                        method: 'GET',
-                        success: function (response) {
+                        method: 'DELETE',
+                        data: {"_token": $('meta[name="csrf-token"]').attr('content')},
+                        success: function (data) {
 
-                            console.log(response)
-                            loadData(url, response)
-
-                        }, error: function (response) {
-
-                            modalHide();
-                            swal("Failed to load data", "", "error");
+                            swal("success", "Data Updated", "success");
+                            window.location.href = url+'s'
+                        },
+                        error: function (response) {
+                            swal("error", "Failed to delete", "error");
                         }
                     })
-                });
+                    // window.location.href = url+'s/'+id;
+                } else {
+                    swal("Cancelled", "Your imaginary file is safe :)", "error");
+                }
+            });
 
-                // Delete a record
-                table.on( 'click', '.remove', function (e) {
-                    //alert('HH')
-                    let id = $(this).data('id');
-                    let url = $(this).data('body');
-                    //alert(url)
-                    swal({
-                            title: "Are you sure?",
-                            text: "You won't be able to retrieve this file.",
-                            type: "warning",
-                            showCancelButton: true,
-                            confirmButtonColor: "#DD6B55",
-                            confirmButtonText: "Yes, archive it!",
-                            cancelButtonText: "No, cancel please!",
-                            closeOnConfirm: false,
-                            closeOnCancel: false
-                        },
-                        function(isConfirm){
-                            if (isConfirm) {
-                                $.ajax({
-                                    url: url+'s/'+id,
-                                    method: 'DELETE',
-                                    data: {"_token": $('meta[name="csrf-token"]').attr('content')},
-                                    success: function (data) {
-
-                                        swal("success", "Data Updated", "success");
-                                        window.location.href = url+'s'
-                                    },
-                                    error: function (response) {
-                                        swal("error", "Failed to delete", "error");
-                                    }
-                                })
-                                // window.location.href = url+'s/'+id;
-                            } else {
-                                swal("Cancelled", "Your imaginary file is safe :)", "error");
-                            }
-                        });
-
-                    e.preventDefault();
-                } );
+        e.preventDefault();
+    } );
 
 });
 
@@ -160,13 +158,22 @@ function loadMember(response) {
 
 function loadReport(response) {
 
+    const photos = JSON.parse(response.photos);
+
+    $('#report_image').empty()
     $('#constructor_name').text(response.constructor.user.name);
     $('#constructor_email').text(response.constructor.user.email);
     $('#constructor_phone').text(response.constructor.user.phone);
     $('#task_id').text(response.task.task_name);
     $('#task_area').text(response.area.area_name);
     $('#report').text(response.report_details);
-    $('#report_image').attr('src',response.report_images);
+
+    $.each(photos, function (index, val) {
+        $('#report_image').append("<div class='col-md-4' >\n" +
+            "<img src='"+val+"' alt=\"\" width=\"200\" height=\"auto\">" +
+            "</div>");
+    })
+
 }
 
 function loadTask(response) {
