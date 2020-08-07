@@ -37,6 +37,7 @@ class ApiRepository
             return response()->json($response);
         }
     }
+
     public function sign_in(Request $request)
     {
         if (auth()->attempt(
@@ -56,6 +57,7 @@ class ApiRepository
                 $user->verifyUser($code);
                 $response = array();
                 $response['error'] = true;
+                $response['verified'] = false;
                 $response['message'] = "Please Verify Your Email, We Have Sent A Secret Code To Your Email";
                 return response()->json($response);
             }

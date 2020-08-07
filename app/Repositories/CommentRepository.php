@@ -83,9 +83,7 @@ class CommentRepository extends Common implements Base
 
     public function destroy(Model $model)
     {
-        // TODO: Implement destroy() method.
-
-
+        return Comment::find($model->id)->delete();
     }
 
     public function previous_comments(Request $request){

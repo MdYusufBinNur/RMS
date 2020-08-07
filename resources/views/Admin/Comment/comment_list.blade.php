@@ -10,7 +10,7 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="title"> List</h4>
+                    <h4 class="title">Project List</h4>
                     <br>
 
                     <div class="card">
@@ -22,10 +22,9 @@
                                 <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                                     <thead>
                                     <tr>
-                                        <th class="text-center"> User Name</th>
                                         <th class="text-center"> Task Name</th>
-                                        <th class="text-center"> Thana</th>
-                                        <th class="text-center"> Comments</th>
+                                        <th class="text-center"> Details</th>
+                                        <th class="text-center"> Status</th>
                                         <th class="text-center disabled-sorting">Actions</th>
                                     </tr>
                                     </thead>
@@ -34,13 +33,26 @@
                                     @if(!empty($comments))
                                         @foreach($comments as $comment)
                                             <tr>
-                                                <td class="text-center">{!! $comment->member->user->name !!}</td>
-                                                <td class="text-center">{!! $comment->task->task_name !!}</td>
-                                                <td class="text-center">{!! $comment->task->area->area_thana !!}</td>
-                                                <td class="text-center">{!! $comment->comment !!}</td>
+                                                <td class="text-center">{!! $comment->task_name !!}</td>
+                                                <td class="text-center">{!! $comment->task_details !!}</td>
+                                                <td class="text-center">
+                                                    @if ($comment->isFinished == 0)
+                                                        PENDING
+                                                    @else
+                                                        FINISHED
+                                                    @endif
+                                                </td>
 
                                                 <td class="text-center">
-                                                    <a href="#" class="btn btn-simple btn-warning btn-icon edit" data-toggle="modal" data-body="{{ "comment" }}" data-id="{{ $comment->id }}" data-target="#Modal"><i class="ti-pencil-alt"></i></a>
+                                                    <form action="{{ url("/all_comments/") }}" method="post">
+                                                        @csrf()
+                                                        <input type="text" name="task_id" value="{{ $comment->id }}" hidden>
+                                                        <input type="text" name="task_name" value="{{ $comment->task_name }}" hidden>
+
+{{--                                                    <a href="#" class="btn btn-simple btn-warning btn-icon edit" data-toggle="modal" data-body="{{ "comment" }}" data-id="{{ $comment->id }}" data-target="#Modal"><i class="ti-pencil-alt"></i></a>--}}
+{{--                                                        <a href="{{ url("/all_comments/".$comment->id."/".$comment->task_name) }}" class="btn btn-simple btn-warning btn-icon" ><i class="ti-eye"></i></a>--}}
+                                                        <button type="submit" class="btn btn-simple btn-warning btn-icon" ><i class="ti-eye"></i></button>
+                                                    </form>
                                                 </td>
                                             </tr>
 
@@ -54,58 +66,6 @@
                     </div><!--  end card  -->
                 </div> <!-- end col-md-12 -->
             </div> <!-- end row -->
-
-        </div>
-    </div>
-
-    <div class="modal fade" id="Modal" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Report View</h4>
-                </div>
-                <form action="{{ url('comments') }}" method="post" enctype="multipart/form-data">
-                    @csrf()
-                    <div class="modal-body">
-                        <div class="row" style="padding: 10px">
-
-                            <input type="hidden" id="comment_id"  name="comment_id">
-
-                            <div class="form-group">
-                                <div class="row"></div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h5 class="text-left"> <strong>USER</strong> </h5>
-                                        <p id="user_name"> USER </p>
-                                        <p id="user_email"> arya@octoriz.com</p>
-                                        <p id="user_phone">01815625375 </p>
-
-                                    </div>
-                                    <div class="col-md-6 text-right">
-                                        <h5 class=""> <strong>CONSTRUCTOR</strong> </h5>
-                                        <p id="constructor_name"> CONSTRUCTOR </p>
-                                        <p id="constructor_email"> constructor@octoriz.com</p>
-                                        <p id="constructor_phone">01815625375 </p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group">
-                                <p id="message"  class="text-justify">We are committed to provide the excellent services to our clients and our business partners. We take pride of our services and are determined to continuously enhance our reputation and relationships with wider stakeholders.</p>
-                            </div>
-
-
-                        </div>
-                    </div>
-
-                </form>
-            </div>
 
         </div>
     </div>

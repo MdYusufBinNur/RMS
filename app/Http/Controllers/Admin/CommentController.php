@@ -5,14 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Admin\Comment;
 use App\Http\Controllers\Controller;
 use App\Repositories\CommentRepository;
+use App\Repositories\TaskRepository;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public $commentRepository;
-    public function __construct(CommentRepository $commentRepository)
+    public $commentRepository,$taskRepository;
+    public function __construct(CommentRepository $commentRepository, TaskRepository $taskRepository)
     {
         $this->commentRepository = $commentRepository;
+        $this->taskRepository = $taskRepository;
     }
 
     /**
@@ -22,8 +24,8 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $comments = $this->commentRepository->index();
-        //return $comments;
+        $tasks = $this->taskRepository->index();
+        $comments = $tasks['tasks'];
         return view('Admin.Comment.comment_list', compact('comments'));
     }
 
@@ -96,4 +98,15 @@ class CommentController extends Controller
     }
 
 
+    public function all_comments(Request $request)
+    {
+       // return $request;
+        $task_name = $request->task_name;
+        $comments = Comment::with('member.user','constructor','task')
+            ->orderBy('id','DESC')
+            ->where('task_id', '=',$request->task_id)
+            ->get();
+        //return $comments;
+        return view('Admin.Comment.comments', compact('comments','task_name'));
+    }
 }

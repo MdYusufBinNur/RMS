@@ -8,7 +8,7 @@
     {{--    http://127.0.0.1:8000/View/img/logo.png--}}
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>RMS ADMIN</title>
+    <title>CMS ADMIN</title>
 
     <!-- Canonical SEO -->
 

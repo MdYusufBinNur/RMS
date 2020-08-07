@@ -30,6 +30,25 @@ $().ready(function() {
             }
         })
     });
+    table.on( 'click', '.load_comment', function (e) {
+
+        let id = $(this).data('id');
+        let url = $(this).data('body');
+
+        //alert(url)
+        $.ajax({
+            url: 'comments/'+id,
+            method: 'GET',
+            success: function (response) {
+                loadData(url, response)
+
+            }, error: function (response) {
+
+                modalHide();
+                swal("Failed to load data", "", "error");
+            }
+        })
+    });
 
     // Delete a record
     table.on( 'click', '.remove', function (e) {
@@ -71,6 +90,7 @@ $().ready(function() {
 
         e.preventDefault();
     } );
+
 
 });
 
@@ -123,6 +143,9 @@ function loadArea(response) {
 
 function loadComment(response) {
 
+    //console.log(response)
+    const photos = JSON.parse(response.photos);
+    $('#comment_image').empty()
     $('#comment_id').val(response.id);
     $('#user_name').text(response.member.user.name);
     $('#user_email').text(response.member.user.email);
@@ -131,7 +154,11 @@ function loadComment(response) {
     $('#constructor_email').text(response.constructor.user.email);
     $('#constructor_phone').text(response.constructor.phone);
     $('#message').text(response.comment);
-    $('#photo').attr('src',response.photos)
+    $.each(photos, function (index, val) {
+        $('#comment_image').append("<div class='col-md-6' >\n" +
+            "<img src='"+val+"' alt=\"\" width=\"200\" height=\"auto\">" +
+            "</div>");
+    })
 }
 
 function loadConstructor(response) {
@@ -184,6 +211,7 @@ function loadTask(response) {
     $('#task_details').val(response.task_details);
     $('#task_budget').val(response.task_budget);
 }
+
 function modalHide() {
     $('#Modal').modal('hide')
 }

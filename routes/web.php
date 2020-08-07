@@ -31,6 +31,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['auth']] , function () {
     Route::get('/get_reports/{state}', 'ReportController@get_report');
     Route::get('/get_rank', 'ReportController@get_rank');
     Route::get('/print_media/{img}','TaskController@print_media');
+    Route::post('/all_comments/','CommentController@all_comments');
 });
 
 
