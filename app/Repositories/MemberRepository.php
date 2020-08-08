@@ -85,7 +85,7 @@ class MemberRepository extends Common implements Base
                 $newUser = new User();
                 $newUser->name = $request->input('name');
                 $newUser->email = $request->input('email');
-                $newUser->role = 'user';
+                $newUser->role = 'member';
                 $newUser->password = Hash::make($request->input('password'));
                 $newUser->remember_token =  $code = rand(000000,999999);
 

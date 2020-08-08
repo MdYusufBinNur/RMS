@@ -14,12 +14,13 @@ class ApiRepository
 {
     public function verifyEmail(Request $request)
     {
-        $email = $request->input('email');
-        $code = $request->input('verification_code');
+        $email = trim($request->input('email'));
+        $code = trim($request->input('verification_code'));
         $user = User::where('email', $email)->first();
-       // return $user;
 
-        if ($user)
+//       return $user;
+
+        if ($user && $user->remember_token == $code)
         {
             $mytime = Carbon::now();
             $user->email_verified_at = $mytime;

@@ -78,11 +78,11 @@ class ConstructorRepository extends Common implements Base
             $newUser->name = $request->name;
             $newUser->email = $request->email;
             $newUser->role = 'constructor';
-            $newUser->email_verified_at = now();
             $newUser->password = Hash::make($request->password);
-            $newUser->remember_token = Str::random(1);
+            $newUser->remember_token =  $code = rand(000000,999999);
 
             if ($newUser->save()){
+                $newUser->verifyUser($newUser->remember_token);
                 $constructor['user_id'] = $newUser->id;
                 if (Constructor::create($constructor)) {
                     return 'success';
@@ -156,11 +156,11 @@ class ConstructorRepository extends Common implements Base
             $newUser->name = $request->name;
             $newUser->email = $request->email;
             $newUser->role = 'constructor';
-            $newUser->email_verified_at = now();
             $newUser->password = Hash::make($request->password);
-            $newUser->remember_token = Str::random(1);
+            $newUser->remember_token =  $code = rand(000000,999999);
 
             if ($newUser->save()){
+                $newUser->verifyUser($newUser->remember_token);
                 $constructor['user_id'] = $newUser->id;
                 if (Constructor::create($constructor)) {
                     $response = array();

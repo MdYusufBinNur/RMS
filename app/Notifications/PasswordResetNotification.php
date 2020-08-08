@@ -38,11 +38,11 @@ class PasswordResetNotification extends Notification
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @return MailMessage
      */
     public function toMail($notifiable)
     {
-        $urlToResetForm = "https://vueapp.test/vue-app/reset-password-form/?token=". $this->token;
+        $urlToResetForm = "http://rms.chickdairsfjhighschool.edu.bd?token=". $this->token;
         return (new MailMessage)
             ->subject(Lang::get('Hey! Reset Password Notification'))
             ->line(Lang::get('You requested here you go!'))
@@ -50,7 +50,6 @@ class PasswordResetNotification extends Notification
             ->line(Lang::get('This password reset link will expire in :count minutes.', ['count' => config('auth.passwords.users.expire')]))
             ->line(Lang::get('To reset password please copy and paste this token in required field !! '))
             ->line(Lang::get( $this->token));
-
     }
 
 
