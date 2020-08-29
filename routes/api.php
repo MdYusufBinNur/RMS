@@ -66,12 +66,16 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'auth:api'], function () {
 
     Route::resource('reports', 'ReportController')->only('store');
 
+
+
+
 });
 Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail'); // send a reset link to email
 Route::post('/password/reset', 'Api\ResetPasswordController@reset');
 
 Route::post('/verify/email', 'Api\VerificationController@resend'); // send a verification link to email
 Route::post('/verified', 'Api\VerificationController@verify'); // Verify Email
+Route::get('get_all_task_comments/{member_id}', 'Admin\ApiController@get_all_task_comments');
 
 /*Route::middleware('auth:api')->post('logout', function (Request $request) {
 

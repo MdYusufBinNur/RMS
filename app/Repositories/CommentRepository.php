@@ -13,6 +13,7 @@ use App\Helper\Base;
 use App\Helper\Common;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 
 class CommentRepository extends Common implements Base
 {
@@ -119,6 +120,35 @@ class CommentRepository extends Common implements Base
         }
         return response()->json("No Data Found", 401);
 
+    }
+
+    public function get_all_task_comments($member_id)
+    {
+//        $tasks = [];
+//         $tasks = \DB::table('tasks')
+//            ->leftjoin('comments','comments.task_id','=','tasks.id')
+//            ->where('comments.member_id','=',$member_id)
+//            ->get();
+        $comments = Comment::where('member_id', $member_id)->get();
+        $tasks  = Task::whereHas('comment', function (Builder $query ) use ($member_id) {
+             $query->where('member_id', '=', $member_id)->select('*');
+         })->get();
+
+        foreach ($tasks as $key => $task)
+        {
+            $user_comments = [];
+
+            foreach ($comments as $comment)
+            {
+                if ($task->id == $comment->task_id)
+                {
+                    array_push($user_comments, $comment);
+                }
+            }
+            $task->comments = $user_comments;
+        }
+
+        return $tasks;
     }
 
 

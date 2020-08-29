@@ -95,4 +95,9 @@ class ApiController extends Controller
     public function all_tasks(){
 
     }
+
+    public function get_all_task_comments($member_id)
+    {
+        return $this->commentRepository->get_all_task_comments($member_id);
+    }
 }
